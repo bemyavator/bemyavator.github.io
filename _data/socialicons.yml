@@ -1,5 +1,5 @@
 - type : twitter
-  link : https://twitter.com/{{ site.company }}
+  link : https://twitter.com/emersaofficial
   icon : /media/social-twitter-white.svg
 
 - type : youtube
