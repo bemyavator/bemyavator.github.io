@@ -1,0 +1,46 @@
+    {% assign amount = 0 %}
+    {% for menuroot1 in site.data.menus.menuroot %}
+    <!-- {% assign amount = amount | plus:1 %}{{ amount }} -->
+    {% if menuroot1.submenuitems %}
+    <li class="menu-root-item active ">
+    <a href="{{menuroot1.link}}" target="">{{menuroot1.name}}</a>
+    <div class="mega">
+    <div class="container">
+    <ul class="menu-groups">
+        {% assign amount1 = 0 %}
+        {% for submenu in menuroot1.submenuitems %}
+        <!-- {% assign amount1 = amount1 | plus:1 %}{{ amount1 }} -->
+        <li class="menu-group {{submenu.line}} {{submenu.column}}">
+            <div class="submenu-wrap">
+                <div class="menu-label">{{submenu.name}}</div>
+                {% assign amount2 = 0 %}
+                {% for submenuitem in submenu.submenuitems %}
+                 <!-- {% assign amount2 = amount2 | plus:1 %}{{ amount2 }} -->
+                <ul class="submenu {{submenu.line}} {{submenu.column}}">
+                    <li class="menu-item {{submenu.line}}{% if submenuitem.icon %}icon{% endif %} {{submenu.column}} active">
+                        <a href="/platform/" target="">
+                            {% if submenuitem.icon %} <div class="iconbox" style="background-image:url( {{submenuitem.icon}} )"></div>{% endif %}
+                                <div class="labels">
+                                    <span class="title"><strong>{{ submenuitem.name }}</strong></span>
+                                    <span class="subtitle">{{ submenuitem.description}}</span>
+                                </div>
+                            <div class="bg"></div>
+                        </a>    
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+    </div>
+    <div class="hover-underlay"></div>
+    </li>
+    {% else %}
+    <li style="/*padding: 13px 1px 0px 0px;*/" class="menu-item1">
+        <a href="{{menuroot1.link}}" target="">{{menuroot1.name}}</a>
+      </li>
+    {% endif %}
+  
+    {% endfor %}

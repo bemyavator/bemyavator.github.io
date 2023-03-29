@@ -1,0 +1,82 @@
+
+<div style="background-color: rgba(54, 25, 25, .00004);" class="card4">
+<div class="card-header msg_head">
+<div class="d-flex bd-highlight">
+<div class="img_cont">
+<img src="/media/d1.jpg" class="rounded-circle user_img">
+<span class="online_icon"></span>
+</div>
+<div class="user_info">
+<span>Chat with EMERSA</span>
+
+</div>
+
+</div>
+
+</div>
+<div id="body" style="width:100%;height:331px" class="card-body msg_card_body">
+	<script>
+        const image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+const image1 = `<div class="img_cont_msg">
+<img src="/media/dude3.jpeg" class="rounded-circle user_img_msg">
+    </div>`;
+</script>
+<div id="data"></div>
+<div style="display: none;" id="formats">Format: start recording to see sample rate</div>
+<p style="display: none;"><strong>Recordings:</strong></p>
+<ol style="display: none;" id="recordingsList"></ol>
+
+
+<audio id="myAudio">
+<source id="audio1" src="" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+
+</div>
+<div class="card-footer">
+<div class="input-group">
+<div style="display: none;" class="input-group-append">
+<span style="display: none;" id="pauseButton" class="input-group-text attach_btn"><i class="fa fa-microphone-slash" aria-hidden="true"></i></span>
+
+</div>
+<button id="recordButton" style="color: black;"><i class="fas fa-microphone"></i></button>
+<button id="stopButton" style="color: rgb(255, 0, 0);display: none;"><i class="fas fa-microphone"></i></button>
+<textarea style="width: 70%;/* margin-right: 20px; */height: 130px;" name=""  id="userInput" class="form-control type_msg" placeholder="Type your message..."></textarea>
+<button style="color: black;" id="playtrack"><i class="fas fa-location-arrow"></i></button>
+</div>
+<div class="box">
+    <center><div id="value"></div> </center>
+</div>
+<div class="container1">
+<input type="range" min="0" max="360" value="0" class="slider" id="slider">
+</div>
+<script type="text/javascript">
+var	slider=document.getElementById("slider");
+var val=document.getElementById("value");
+val.innerHTML=slider.value;
+slider.oninput=function(){
+    val.innerHTML=this.value;
+}
+</script>
+<input id="fileInput" type="file" style="display: none;">
+        <div id="controls">
+            <button id="openBtn">Open BVH File</button>
+            <select id="animBtn" >
+                <option style="display: none" value="-1">Set Animation</option>
+            </select>
+        </div>
+</div>
+</div>
+<div style="display: none;">
+<br />
+<div style="color: black;" id="startButtonId">Open Mouth</div>
+<div style="color: black;" id="resetButtonId">Blink</div>
+<button style="color: black;" id="playtrack">play</button>
+<button onclick="dude()">Click me</button>
+</div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+<!--<button style="margin-top: 30px;" class="server5a" id="server5a">dude</button>-->

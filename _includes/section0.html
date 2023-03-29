@@ -1,0 +1,62 @@
+<div id="section-0" class="section-wrap header block-0">
+    <div class="blackout"></div>
+    <section id="page_head_e94e9c6c2155c1111cde1a0d206f282c" class="page_head lazy e94e9c6c2155c1111cde1a0d206f282c light logo_title do_nothing has-video " style="background-position:50% 50%;background-color:#0b0c1b;background-size:cover;" data-bg-multi="url( /media/Singularity_XDR_Hero_M-2b.png )">
+    <div class="underlay">
+    <video class="lazy" autoplay muted loop><source data-src="/media/intro2.mp4" type="video/mp4"></video> </div>
+    <div class="underlay" style="background: linear-gradient( 180deg, rgba(11,12,27,0) 50%, rgba(11,12,27,1) 100% ); ">
+    </div>
+    <div class="container">
+    <div class="inner is-video">
+    <div class="graphic wow fadeIn">
+    <div class="hitbox" data-src="/media/top5.mp4">
+    <img src="/media/testimonial_icon_play.svg" />
+    </div>
+    </div>
+    <div class="context"> 
+    <div class="heading" style="max-width: 480px;">
+    <img class="wow fadeInDown" src="/media/logo2.png" />
+    </div>
+    <div class="hrule wow fadeInLeft"></div>
+    <div class="blurb wow fadeIn logo-blurb" data-wow-delay=".5s">
+    Connections are evolving and so do we.<br />
+    Virtual heaven with limitless possibilities.<br />
+    <button onclick="location.href='https://discord.com/invite/aeeHKD6AR3';" style="border: #fff !important;background-color: #6b0aea !important;">Join discord</button><br />
+    <span style="color: #dc40dc !important;">the server & Join Emersa Discord Community</span>
+     </div>
+    <div class="cta right_down_clear transparent wow fadeInRight">
+    <a class="" href="#" target="">
+    <img class="pulse" src="/media/cta_right_down_transparent.svg" /> <span>Scroll to Explore</span>
+    </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <script>
+        ( function ( $, window, document, undefined ) {
+        
+            $( "#page_head_e94e9c6c2155c1111cde1a0d206f282c .cta a" ).click( function ( e ) {
+        
+                if ( $( this ).attr( 'href' ) == '#' ) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var elm = $( 'section' ).eq( 1 );
+                    window.scroll( {
+                        behavior: 'smooth',
+                        left:     0,
+                        top:      elm.get()[0].offsetTop
+                    } );
+                    return false;
+                }
+        
+            });
+        
+        } )( jQuery, window, document );
+        </script>
+        <script>
+            $( "#page_head_e94e9c6c2155c1111cde1a0d206f282c .hitbox" ).click( function () {
+                GlobalVideoPlayer.src( $( this ).data( 'src' ) );
+            });
+        </script>
+    
+    </div>

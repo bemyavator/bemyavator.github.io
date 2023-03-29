@@ -1,0 +1,11 @@
+- type : twitter
+  link : https://twitter.com/{{ site.company }}
+  icon : /media/social-twitter-white.svg
+
+- type : youtube
+  link : https://youtube.com/
+  icon : /media/social-youtube-white.svg
+
+- type : discord
+  link : https://google.com
+  icon : /media/icons8-discord.svg

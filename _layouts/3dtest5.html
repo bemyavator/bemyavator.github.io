@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	{% include head3.html %}
+	<!--Coded With Love By Mutiullah Samim-->
+	<body>
+		
+		<div id="ctrl">
+			Use controls to change morph target influences:<br/>
+			<!--
+			<input type="range">是滑动条，onchange事件只会在拖动滑动条，然后松开鼠标时执行(类似onmouseup)
+			事件绑定有三种方式：
+			1、HTML中：
+			<element onchange="SomeJavaScriptCode">
+			或
+			<element onchange="myFunction()">
+			2、JavaScript中：
+			object.onchange=function(){SomeJavaScriptCode};
+			
+			morphTargetInfluences表示形变目标的影响
+			变形后的点坐标为：V[i] = V[i] + (↑P↓j=0) ∑ MTI[j] * (V[i,j] - V[i])
+			-->
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 0 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 1 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 2 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 3 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 4 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 5 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[7] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[e] = this.value/100;" />
+		</div>
+		<canvas class="webgl"></canvas>
+
+		<div class="loading-bar"></div>
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+			{% include 3dwithcolomn1.html %}
+
+
+			{% include chatbotwithcolomn.html %}
+			
+			</div>
+			<button type="button">Blink</button>
+		</div>
+		{% include script2.html %}
+		
+		<script src="/js/scripts1.js"></script>
+			
+	</body>
+</html>

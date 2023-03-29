@@ -1,0 +1,449 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="./src/assets/logo.png">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="theme-color" content="#000000"><meta name="description" content="22nd Century Multiverse">
+        <link rel="apple-touch-icon" href="/logo192.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="manifest" href="/manifest.json">
+        <title>EMERSA</title><link href="/css/2.b28305bc.chunk.css" rel="stylesheet"><link href="/css/mint.css" rel="stylesheet">
+        <link href="/css/main.7892755e.chunk.css" rel="stylesheet">
+        <style>undefined</style>
+        <script async="true" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" data-react-helmet="true"></script>
+        <script async="true" src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.0/lity.min.js" data-react-helmet="true"></script>
+        <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script><style type="text/css">
+@font-face {
+font-weight: 400;
+font-style:  normal;
+font-family: 'Circular-Loom';
+
+src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Book.woff2') format('woff2');
+}
+
+@font-face {
+font-weight: 500;
+font-style:  normal;
+font-family: 'Circular-Loom';
+
+src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Medium.woff2') format('woff2');
+}
+
+@font-face {
+font-weight: 700;
+font-style:  normal;
+font-family: 'Circular-Loom';
+
+src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
+}
+
+@font-face {
+font-weight: 900;
+font-style:  normal;
+font-family: 'Circular-Loom';
+
+src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Black.woff2') format('woff2');
+}</style><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="true">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa">
+
+<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "/build/three.module.js",
+            "three/addons/": "/jsm/"
+        }
+    }
+</script>
+    
+<script type="module">
+
+    import * as THREE from 'three';
+    import Stats from 'three/addons/libs/stats.module.js';
+    import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+
+    let container, stats, clock, gui, mixer, actions, activeAction, previousAction;
+    let camera, scene, renderer, model, face;
+
+    const api = { state: 'Walking' };
+
+
+    //const state = { variant: 'midnight' };
+
+    init();
+    render();
+    animate();
+
+    function init() {
+
+        const container = document.createElement( 'div' );  
+        container.setAttribute("id", "Div1");
+        container.setAttribute("class", "skullImage");
+        document.body.appendChild( gpt3headerimage );
+        camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 10 );
+        // need to make sure the camera is properly positioned before scene is rendered
+        camera.position.set( 0, 0, 10 );
+        scene = new THREE.Scene();
+        clock = new THREE.Clock();
+        new RGBELoader()
+            .setPath( '/textures/equirectangular/' )
+            .load( 'quarry_01_1k.hdr', function ( texture ) {
+
+                texture.mapping = THREE.EquirectangularReflectionMapping;
+
+                //  scene.background = texture;
+                scene.environment = texture;
+                scene.background = new THREE.Color( 0xe0e0e0 );
+                const geometry = createGeometry();
+
+                //render();
+                // model
+                const loader = new GLTFLoader().setPath( '/assets/glb/' );
+                loader.load( 'will1.glb', function ( gltf ) {
+                    gltf.scene.scale.set( 10.0, 10.0, 10.0 );
+                  
+                    scene.add( gltf.scene );
+                   
+                    // GUI
+                //      	gui = new GUI();
+                    // Details of the KHR_materials_variants extension used here can be found below
+                    // https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_variants
+                    const parser = gltf.parser;
+                   
+                //	const variantsExtension = gltf.userData.gltfExtensions[ 'KHR_materials_variants' ];
+                //	const variants = variantsExtension.variants.map( ( variant ) => variant.name );
+                //	const variantsCtrl = gui.add( state, 'variant', variants ).name( 'Variant' );
+                //	selectVariant( scene, parser, variantsExtension, state.variant );
+                //	variantsCtrl.onChange( ( value ) => selectVariant( scene, parser, variantsExtension, value ) );
+                const mesh = gltf.scene.children[ 0 ];
+                
+               scene.add( mesh );
+               mesh.scale.set(20,20,20);
+               createGUI( model, mesh.animations );
+               console.log( mesh.name);
+               const head = mesh.getObjectByName( 'Will' );
+                const influences = head.morphTargetInfluences;
+                console.log( head.morphTargetInfluences[1]);
+              //  mixer = new THREE.AnimationMixer( mesh );
+              //  mixer.clipAction( mesh.animations[ 0 ] ).play();
+                // GUI
+                mixer = new THREE.AnimationMixer( head );
+             //   mixer.clipAction( head.animations[ 0 ] ).setDuration( 1 ).play();
+                const gui = new GUI();
+                gui.close();
+                render();
+                } );
+            } );
+        renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
+        renderer.setClearColor( 0x000000, 0 );
+        renderer.setPixelRatio( window.devicePixelRatio );
+        renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+//                renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1;
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        container.appendChild( renderer.domElement );
+        const controls = new OrbitControls( camera, renderer.domElement );
+        controls.addEventListener( 'change', render ); // use if there is no animation loop
+        controls.minDistance = 2;
+        controls.maxDistance = 10;
+        controls.target.set( 0, 0.5, - 0.2 );
+        controls.update();
+        window.addEventListener( 'resize', onWindowResize );
+        stats = new Stats();
+        container.appendChild( stats.dom );
+
+    }
+
+    
+            render();
+
+            
+    function createGUI( model, animations ) {
+
+const states = [ 'Idle', 'Walking', 'Running', 'Dance', 'Death', 'Sitting', 'Standing' ];
+const emotes = [ 'Jump', 'Yes', 'No', 'Wave', 'Punch', 'ThumbsUp' ];
+
+gui = new GUI();
+
+mixer = new THREE.AnimationMixer( model );
+
+actions = {};
+
+const wireFolder = gui.addFolder( 'Wire' );
+
+
+        // Set up dat.GUI to control targets
+        const params = {
+            LookDown: 0,
+            Twist: 0,
+        };
+        //const gui = new GUI( { title: 'Morph Targets' } );
+        /*
+        this.mesh.morphTargetInfluences[e] += .5 * (t - this.mesh.morphTargetInfluences[e]),
+            e = this.mesh.morphTargetDictionary["Look Down"],
+            t = this.stateLookY > 0 ? this.stateLookY : 0,
+            t = this.stateBlink ? 0 : t, 
+        */
+        wireFolder.add( params, 'LookDown', 0, 1 ).step( 0.01 ).onChange( function ( value ) {
+
+            mesh.morphTargetInfluences[ 0 ] = value;
+
+        } );
+        wireFolder.add( params, 'Twist', 0, 1 ).step( 0.01 ).onChange( function ( value ) {
+
+            mesh.morphTargetInfluences[ 1 ] = value;
+
+        } );
+
+    
+
+
+
+// states
+
+
+// emotes
+
+
+
+// expressions
+console.log(window);
+face = mesh.getObjectByName( 'Will' );
+
+const expressions = Object.keys( face.morphTargetDictionary );
+const expressionFolder = gui.addFolder( 'Expressions' );
+
+for ( let i = 0; i < expressions.length; i ++ ) {
+
+expressionFolder.add( face.morphTargetInfluences, i, 0, 1, 0.01 ).name( expressions[ i ] );
+
+}
+
+activeAction = actions[ 'Walking' ];
+activeAction.play();
+
+expressionFolder.open();
+
+}
+
+    function createGeometry() {
+
+const geometry = new THREE.BoxGeometry( 2, 2, 2, 32, 32, 32 );
+
+
+// create an empty array to  hold targets for the attribute we want to morph
+// morphing positions and normals is supported
+geometry.morphAttributes.position = [];
+
+// the original positions of the cube's vertices
+const positionAttribute = geometry.attributes.position;
+
+// for the first morph target we'll move the cube's vertices onto the surface of a sphere
+const spherePositions = [];
+
+// for the second morph target, we'll twist the cubes vertices
+const twistPositions = [];
+const direction = new THREE.Vector3( 1, 0, 0 );
+const vertex = new THREE.Vector3();
+
+for ( let i = 0; i < positionAttribute.count; i ++ ) {
+
+const x = positionAttribute.getX( i );
+const y = positionAttribute.getY( i );
+const z = positionAttribute.getZ( i );
+
+spherePositions.push(
+
+x * Math.sqrt( 1 - ( y * y / 2 ) - ( z * z / 2 ) + ( y * y * z * z / 3 ) ),
+y * Math.sqrt( 1 - ( z * z / 2 ) - ( x * x / 2 ) + ( z * z * x * x / 3 ) ),
+z * Math.sqrt( 1 - ( x * x / 2 ) - ( y * y / 2 ) + ( x * x * y * y / 3 ) )
+
+);
+
+// stretch along the x-axis so we can see the twist better
+vertex.set( x * 2, y, z );
+
+vertex.applyAxisAngle( direction, Math.PI * x / 2 ).toArray( twistPositions, twistPositions.length );
+
+}
+
+// add the spherical positions as the first morph target
+geometry.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( spherePositions, 3 );
+
+// add the twisted positions as the second morph target
+geometry.morphAttributes.position[ 1 ] = new THREE.Float32BufferAttribute( twistPositions, 3 );
+
+return geometry;
+
+}
+    function onWindowResize() {
+
+        let box = document.querySelector('#Div1');
+let width = box.offsetWidth;
+let height = box.offsetHeight;
+
+        camera.aspect = window.offsetWidth / window.offsetHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+
+        render();
+
+    }
+
+    function render() {
+
+        
+        renderer.render( scene, camera );
+
+    }
+
+    function animate() {
+
+var dt = clock.getDelta();  
+
+if ( mixer ) mixer.update( dt );
+
+requestAnimationFrame( animate );
+
+renderer.render( scene, camera );
+
+stats.update();
+
+};
+
+</script>
+
+</head>
+<body data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="">
+
+<div class="gradient__bg">
+<div class="gpt3__navbar">
+<div class="Toastify"></div>
+<div class="gpt3__navbar-links">
+<a aria-current="page" class="active" href="/"> 
+    <div class="gpt3__navbar-links_logo">
+        <img src="/media/logo.359950db.png" class="logo">
+    </div>
+</a>
+    <div class="gpt3__navbar-links_container">
+        <p><a aria-current="page" class="active" href="/">Home</a></p>
+        <p><a href="#wgpt3">Why Emersa?</a></p>
+        <p><a target="_blank" rel="noreferrer" href="https://discord.gg/aeeHKD6AR3">
+        <p id="bt">Join discord</p></a></p>
+        <p><a class="bg-transparent border-0" id="bt" href="/mint">Minty</a></p>
+        <p><a href="https://www.keepandshare.com/doc6/38222/akasha-original-white-paper-1-pdf-129k?da=y" target="_blank" rel="noreferrer">White Paper</a></p>
+        <p><a href="#team">Team</a></p>
+    </div>
+</div>
+    <div class="gpt3__navbar-sign">
+        <button type="button" class="bg-success">Connected</button>
+        <button type="button" class="bg-info ml-2">No Download  Available</button>
+    </div>
+    <div class="gpt3__navbar-menu">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#fff" height="27" width="27" xmlns="http://www.w3.org/2000/svg" style="color: rgb(255, 255, 255);"><g>
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path d="M3 4h18v2H3V4zm6 7h12v2H9v-2zm-6 7h18v2H3v-2z"></path></g>
+        </svg>
+    </div>
+    <div class="modal fade" id="exampleModalmerchf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-wallet modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-white text-center text-uppercase w-100" id="exampleModalLabel"> Wallet</h3>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <img src="assets/errorSign.svg" alt="">
+                    </button>
+                </div>
+            <div class="modal-body p-5 text-center">
+                <button class="w-100 " type="button">
+                    <div class="row pb-2 pt-1">
+                        <div class="outerdivs-meta">
+                            <div class="col-12 text-end">
+                                <img src="/MetaMask_Fox.png" alt="metamasklogo" class="img-fluid">
+                            </div>
+                            <div class="col-12 my-auto p-0 text-start">
+                            <p>Connected</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="w-100 mt-4 " type="button">
+                    <div class="row pb-2 pt-1">
+                        <div class="outerdivs-meta">
+                            <div class="col-12 text-end">
+                                <img src="/walletconnect.png" alt="metamasklogo" class="img-fluid">
+                            </div>
+                            <div class="col-12 my-auto p-0 text-start"><p>Disconnect Connect</p></div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            <div class="gpt3__header section__padding" id="home"><div class="gpt3__header-content"><h1 class="gradient__text">EMERSA</h1><div class="wrapper"><div class="video-main"><div class="promo-video"><div class="waves-block"><div class="waves wave-1"></div>
+            <div class="waves wave-2"></div>
+            <div class="waves wave-3"></div></div></div><a href="https://youtu.be/vDwgWHw7eWA" class="video video-popup mfp-iframe" data-lity="true"><i class="fa fa-play" style="margin-top: 33%;"></i>
+            </a></div></div><p>Connections are evolving and so do we. <br> Virtual heaven with limitless possibilities.</p><div class="gpt3__header-content__input"><a target="_blank" rel="noreferrer" href="https://discord.gg/aeeHKD6AR3"> <button id="bt">Join discord</button> </a></div>
+            <div class="gpt3__header-content__people"><p>Support the server &amp; Join Emersa Discord Community</p></div></div>
+            <div id="gpt3headerimage" class="gpt3__header-image">
+yo
+            </div>
+        </div></div>
+            <div class="gpt3__brand section__padding"><div><img src="/media/google.54dc1fc9.png" class="google"></div>
+            <div><img src="/media/dropbox.e9792e93.png" class="dropbox"></div>
+            <div><img src="/media/shopify.e9b6fccf.png" class="shopify"></div></div>
+            <div class="gpt3__whatgpt3 section__margin" id="wgpt3"><div class="gpt3__whatgpt3-feature"><div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>What is Emersa</h1></div>
+            <div class="gpt3__features-container_feature-text"><p> A pioneering 21st century digital connection. The focus is on communication, adventure and education. Built on Unreal Engine and Blockchain with our governance token $ROLAIS, we're aiming to deliver the best most secure social space for you. Join us now.</p></div></div></div>
+            <div class="gpt3__whatgpt3-heading"><h1 class="gradient__text">Virtual Heaven</h1></div>
+            <div class="gpt3__whatgpt3-container"><div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Connection</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Extended reality is the future. Distance will vanish. Connect across the Globe in ways you dream of.</p></div></div>
+            <div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Adventure</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Every moment is in front of your eyes. Experience Emersa Akashaverse.</p></div></div>
+            <div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Education</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Web 3.0 integrating virtual reality brings the best and most effective hands on learning experience.</p></div></div></div></div>
+            <div class="gpt3__features section__padding" id="features"><div class="gpt3__features-heading"><h1 class="gradient__text">The Future is Now. Let's Make it Happen.</h1><p>Opening Soon</p></div>
+            <div class="gpt3__features-container"><div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Create.</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Create your own personalized world, a world you feel the most comfortable and proud at and share it with others.</p></div></div>
+            <div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Explore.</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Explore your friends worlds and see the life from their perspective.</p></div></div>
+            <div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Trade.</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Buy and sell digital items, enjoy the experience while making money on the go.</p></div></div>
+            <div class="gpt3__features-container__feature"><div class="gpt3__features-container__feature-title"><div></div><h1>Display</h1></div>
+            <div class="gpt3__features-container_feature-text"><p>Customise the showcase of your digital items with the ultra privacy blockchain offers.</p></div></div></div></div>
+            <div class="gpt3__possibility section__padding" id="possibility"><div class="gpt3__possibility-image"><img src="/media/possibility.png" alt="possibility"></div>
+            <div class="gpt3__possibility-content"><h4>Early Access Soon</h4><h1 class="gradient__text">The possibilities are <br> beyond your imagination</h1><p>Emersa offers technologies helping people connect, find communities, and grow businesses. Share immersive experiences with other people and do things together you couldn’t do in the physical world. It’s the next evolution in a long line of social technologies. Be part of change.</p><h4>Education &amp; Sustainability is key.</h4></div></div>
+            <div class="gpt3__cta"><div class="gpt3__cta-content"><p>Register for Presale</p><h3>Register Today &amp; start exploring the endless possibilities.</h3></div>
+            <div class="gpt3__cta-btn"><a target="_blank" rel="noreferrer" href="https://forms.gle/RmPfXnLzgbuYAqPY6"> <button id="bt">The PRESALE form</button> </a></div></div>
+            <div><section><div class="container" id="team"><div class="row flex-center sm-no-flex"><div class="pull-right sm-no-float col-md-8"><ul class="team-members"><li class="clearfix"><div class="member-details"><div><img src="/media/person1.c7cbe279.png" alt="UI Designer"><div class="member-info"><h3>Alan Solis</h3><p>CMO</p></div></div></div>
+            <div class="member-details"><div><img src="/media/shant.8f4eadb8.png" alt="UI Designer"><div class="member-info"><h3>Shant Pourian</h3><p>CBO</p></div></div></div>
+            <div class="member-details"><div><img src="/media/martin.86954b11.png" alt="CMO"><div class="member-info"><h3>Martin Kuprik</h3><p>CEO &amp; Founder</p></div></div></div></li></ul></div>
+            <div class="pull-left col-md-4 sm-text-center"><div class="team-overview"><h2>Who Are We?</h2><p><div>Emersa A-team is a bunch of geeks, nerds and artists coming together to share knowledge. Our goal is to build highly-engaging experiences in the metaverse.</div></p></div></div></div></div></section></div>
+            <div class="gpt3__blog section__padding" id="blog"><div class="gpt3__blog-heading"><h1 class="gradient__text">A lot is happening <br> Emersa Unreal visual demo v2.4 is in.</h1></div>
+            <div class="gpt3__blog-container"><div class="gpt3__blog-container_groupA"><div class="gpt3__blog-container_article"><div class="gpt3__blog-container_article-image"><img src="/media/blog01.ca941581.png" alt="blog_image"></div>
+            <div class="gpt3__blog-container_article-content"><div><p>Jan 21,2022</p><h3>Emersa genesis land NFTs presale coming soon.</h3></div><p>Opening soon</p></div></div></div>
+            <div class="gpt3__blog-container_groupB"><div class="gpt3__blog-container_article"><div class="gpt3__blog-container_article-image"><img src="/media/blog02.cef4bf25.png" alt="blog_image"></div>
+            <div class="gpt3__blog-container_article-content"><div><p></p><h3>Fashion a new way to express.</h3></div><p>Opening soon</p></div></div>
+            <div class="gpt3__blog-container_article"><div class="gpt3__blog-container_article-image"><img src="/media/blog03.9784676f.png" alt="blog_image"></div>
+            <div class="gpt3__blog-container_article-content"><div><p></p><h3>Elevating education with more hands-on experiment.</h3></div><p>Opening soon</p></div></div>
+            <div class="gpt3__blog-container_article"><div class="gpt3__blog-container_article-image"><img src="/media/blog04.8e003c70.png" alt="blog_image"></div>
+            <div class="gpt3__blog-container_article-content"><div><p></p><h3>Collaboration is key.</h3></div><p>Opening soon</p></div></div>
+            <div class="gpt3__blog-container_article"><div class="gpt3__blog-container_article-image"><img src="/media/blog05.a064f6ae.png" alt="blog_image"></div>
+        <div class="gpt3__blog-container_article-content"><div><p></p>
+            <h3>The gaming experience is a breeze at EMERSA.</h3></div><p>Opening soon</p></div></div></div></div></div>
+            <div class="gpt3__footer section__padding footer-main"><div class="gpt3__footer-heading"><h1 class="gradient__text">STEP INTO THE FUTURE</h1></div><p><div class="gpt3__footer-btn"><a target="_blank" rel="noreferrer" href="https://discord.gg/aeeHKD6AR3"> <button id="bt">Join Discord</button> </a></div></p><div class="gpt3__footer-links"><div class="gpt3__footer-links_logo"><p><br>Web 3.0 is here. To access the Metaverse, connect your Metamask with Akasha City Genesis NFT. Obtain your token in MINTY</p></div><p><a target="_blank" rel="noreferrer" href="https://discord.gg/aeeHKD6AR3"> <button id="bt">Join discord</button> </a></p><div class="gpt3__footer-links_div"></div>
+            <div class="gpt3__footer-links_div"><h4>Get in touch</h4><a target="_blank" rel="noreferrer" href="https://twitter.com/emersaofficial"> <button id="bt">Twitter</button> </a><p>dcl@akasha.gl</p></div></div>
+            <div class="gpt3__footer-copyright"><p>@2023 Beamport Analytics. All rights reserved.</p></div></div><script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+            
+        
+            
+            <script>!function(e){function r(r){for(var n,a,i=r[0],c=r[1],l=r[2],s=0,p=[];s<i.length;s++)a=i[s],Object.prototype.hasOwnProperty.call(o,a)&&o[a]&&p.push(o[a][0]),o[a]=0;for(n in c)Object.prototype.hasOwnProperty.call(c,n)&&(e[n]=c[n]);for(f&&f(r);p.length;)p.shift()();return u.push.apply(u,l||[]),t()}function t(){for(var e,r=0;r<u.length;r++){for(var t=u[r],n=!0,i=1;i<t.length;i++){var c=t[i];0!==o[c]&&(n=!1)}n&&(u.splice(r--,1),e=a(a.s=t[0]))}return e}var n={},o={1:0},u=[];function a(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,a),t.l=!0,t.exports}a.e=function(e){var r=[],t=o[e];if(0!==t)if(t)r.push(t[2]);else{var n=new Promise((function(r,n){t=o[e]=[r,n]}));r.push(t[2]=n);var u,i=document.createElement("script");i.charset="utf-8",i.timeout=120,a.nc&&i.setAttribute("nonce",a.nc),i.src=function(e){return a.p+"static/js/"+({}[e]||e)+"."+{3:"c1a2057c",4:"343a677a"}[e]+".chunk.js"}(e);var c=new Error;u=function(r){i.onerror=i.onload=null,clearTimeout(l);var t=o[e];if(0!==t){if(t){var n=r&&("load"===r.type?"missing":r.type),u=r&&r.target&&r.target.src;c.message="Loading chunk "+e+" failed.\n("+n+": "+u+")",c.name="ChunkLoadError",c.type=n,c.request=u,t[1](c)}o[e]=void 0}};var l=setTimeout((function(){u({type:"timeout",target:i})}),12e4);i.onerror=i.onload=u,document.head.appendChild(i)}return Promise.all(r)},a.m=e,a.c=n,a.d=function(e,r,t){a.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},a.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},a.t=function(e,r){if(1&r&&(e=a(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(a.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)a.d(t,n,function(r){return e[r]}.bind(null,n));return t},a.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return a.d(r,"a",r),r},a.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},a.p="/",a.oe=function(e){throw console.error(e),e};var i=this.webpackJsonpdriven=this.webpackJsonpdriven||[],c=i.push.bind(i);i.push=r,i=i.slice();for(var l=0;l<i.length;l++)r(i[l]);var f=c;t()}([])</script><script src=""></script><script src=""></script><loom-container id="lo-engage-ext-container"><loom-shadow classname="resolved"></loom-shadow></loom-container><loom-container id="lo-companion-container"><loom-shadow classname="resolved"></loom-shadow></loom-container></body>
+            </html>

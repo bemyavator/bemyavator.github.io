@@ -1,0 +1,45 @@
+<a name="team"></a>
+<div id="section-2" class="">
+    <section id="interactive_f0c7d017c52d5af2cb668c11f3a90765" class="interactive lazy f0c7d017c52d5af2cb668c11f3a90765 dark stacked" style="background-color:#0b0c1b;" data-bg-multi="">
+    <div class="" style="background-color:;">
+    <div class="">
+            <div id="scroller" style="width:70%; height: 200px; margin: 0 auto;">
+                <div class="innerScrollArea">
+                <ul>
+                {% for team in site.data.teams %}
+                <li>
+                <div style="background-color: #fff; height: 200px;width: 200px;">
+                <img style="height: 100px;width: 100px;border-radius: 50%; margin-left: 20%;margin-top: 5px;" src="{{ team.image }}"/>
+                <br />
+                <span style="width: 200px;display: block;text-align: center;">{{ team.name }}</span>
+                <br />
+                <span style="height: 20px;width: 200px">
+                {% if team.linkedin %}
+                <img style="height: 20px;width: 20px; z-index: 20;" src="/media/linkedin-svgrepo-com.svg">
+                {% else %}
+                <img style="height: 20px;width: 20px; z-index: 20;" src="/media/break.png">
+                {% endif %}
+                {% if team.github %}
+                <img style="height: 20px;width: 20px; z-index: 20;" src="/media/github.svg">
+                {% else %}
+                <img style="height: 20px;width: 20px; z-index: 20;" src="/media/break.png">
+                {% endif %}
+                </span>
+                </div>
+                </li>
+                {% endfor %}
+                </ul>
+                </div>
+                </div>
+    <style>
+    #singularity-graphic {
+    display: block;
+    width: 100%;
+    height:auto;
+    max-width: 1800px;
+    }
+    </style>
+    </div>
+    </div>
+    </section>
+</div>

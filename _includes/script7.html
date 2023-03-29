@@ -1,0 +1,255 @@
+<script>//var object5 = "I'm going to fuck you silly";</script>
+		<!-- Import maps polyfill -->
+		<!-- Remove this when import maps will be widely supported -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.2/dat.gui.js"></script>  
+		<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "/build/three.module.js",
+					"three/addons/": "/jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+            import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+
+			let camera, scene, renderer;
+
+			init();
+			render();
+
+			function init() {
+               
+ // Buttons startButton and resetButton
+ var startButton = document.getElementById( 'startButtonId' );
+ var resetButton = document.getElementById( 'resetButtonId' );
+ var playtrack = document.getElementById( 'playtrack' );
+
+
+				const container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( - 1.8, 0.6, 2.7 );
+                var light = new THREE.AmbientLight(0xf6e86d);
+
+				scene = new THREE.Scene();
+                scene.add(light);
+				
+
+						// model
+
+						const loader = new GLTFLoader().setPath( '/assets/glb/' );
+						loader.load( 'will1.glb', function ( gltf ) {
+                            gltf.scene.scale.set( 5.0, 5.0, 5.0 );
+						//	scene.add( gltf.scene );
+                            const mesh = gltf.scene.children[ 0 ];
+                      
+                      scene.add( mesh );
+                      mesh.scale.set(5,5,5);
+                     //console.log( mesh.name);
+                      const head = mesh.getObjectByName( 'Will' );
+                       var     mixer = new THREE.AnimationMixer( head );
+                       var gui = new dat.GUI();
+                      
+
+//actions = {};
+
+
+
+
+
+				// Set up dat.GUI to control targets
+			
+
+                
+
+                const control = {
+					OpenMouth: 0,
+                    Blink: 0,
+                    Eyebrows: 0,
+					Smile: 0,
+                    LookLeft: 0,
+                    LookRight: 0,
+                    Lookup: 0,
+                    Lookdown: 0
+				};
+			
+gui.add(control, 'OpenMouth', 0,1).step(0.01).listen().onChange(function(value){
+// const head = mesh.getObjectByName( 'Will' );
+head.morphTargetInfluences[0] = value;
+});
+gui.add(control, 'Blink', 0,1).step(0.01).listen().onChange(function(value){
+// const head = mesh.getObjectByName( 'Will' );
+head.morphTargetInfluences[1] = value;
+});
+gui.add(control, 'Eyebrows', 0,1).step(0.01).listen().onChange(function(value){
+// const head = mesh.getObjectByName( 'Will' );
+head.morphTargetInfluences[2] = value;
+});
+gui.add(control, 'Smile', 0,1).step(0.01).listen().onChange(function(value){
+head.morphTargetInfluences[3] = value;
+});
+gui.add(control, 'LookLeft', 0,1).step(0.01).listen().onChange(function(value){
+head.morphTargetInfluences[4] = value;
+});
+gui.add(control, 'LookRight', 0,1).step(0.01).listen().onChange(function(value){
+head.morphTargetInfluences[5] = value;
+});
+gui.add(control, 'Lookup', 0,1).step(0.01).listen().onChange(function(value){
+head.morphTargetInfluences[6] = value;
+});
+gui.add(control, 'Lookdown', 0,1).step(0.01).listen().onChange(function(value){
+head.morphTargetInfluences[7] = value;
+});
+
+startButton.onclick = function StartAnimation() {
+setTimeout(function() {head.morphTargetInfluences[0] = 1;}, 500);
+setTimeout(function() {head.morphTargetInfluences[0] = 0;}, 1000);
+
+          
+         
+
+    
+   
+    /*
+if (initAnim) {
+  initAnim = false;
+  runAnim = true;
+  theta = 0;
+}
+// Start and Pause 
+if (runAnim) { 
+  startButton.innerHTML = 'Pause';
+  runAnim = false;
+  isPlay = true;
+  animate();
+  } 
+  else {
+        startButton.innerHTML = 'Restart';
+        runAnim = true;
+        isPlay = false;
+  }
+  */
+}
+
+resetButton.onclick = function ResetParameters() {
+    head.morphTargetInfluences[1] = 1;
+    setTimeout(function(){
+        head.morphTargetInfluences[1] = 0;
+}, 500);
+    
+// Set StartButton to Start  
+//startButton.innerHTML = 'Start';
+
+// Boolean for Stop Animation
+/*initAnim = true;
+runAnim = false;
+theta = 0;
+isPlay = false;
+render();
+*/
+}
+
+
+                       gui.close();
+							render();
+
+						} );
+
+					
+
+                renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
+                renderer.setClearColor( 0x000000, 0 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 1;
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				container.appendChild( renderer.domElement );
+
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render ); // use if there is no animation loop
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.target.set( 0, 0, - 0.2 );
+				controls.update();
+                const controls2 = new TrackballControls(camera, renderer.domElement);
+                controls2.rotateSpeed = 1.0;
+                controls2.zoomSpeed = 4;
+                controls2.panSpeed = 0.8;
+                controls2.noZoom = false;
+                controls2.noPan = false;
+                controls2.staticMoving = true;
+                controls2.dynamicDampingFactor = 0.3
+                controls2.update();
+                // create an AudioListener and add it to the camera
+                
+
+           
+                playtrack.onclick = function playtrack1() {
+                         // create a global audio source
+                const image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+                const image1 = `{% include image2.html %}`;
+                let xhr = new XMLHttpRequest();
+                var userMessage = document.querySelector("#userInput").value;
+                let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
+                document.querySelector('#body').innerHTML+= userHtml;
+                xhr.open(`GET`, `https://chatapi-vd80.onrender.com/test123/${userMessage}`);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send(`messageValue=${userMessage}`);
+                xhr.onload = function () {
+                var obj = JSON.parse(this.responseText);
+                var obj1q = JSON.stringify(this.responseText);
+                let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2+'</div>'+'<div class="msg_cotainer">'+obj.traits.text[0].value+'</div>'+'</div>'
+                document.querySelector('#body').innerHTML+= botHtml;
+                var object5a = obj.traits.text[0].value;
+                const listener = new THREE.AudioListener();
+                camera.add( listener );
+                const sound = new THREE.Audio( listener );
+                const audioLoader = new THREE.AudioLoader();
+audioLoader.load( `https://nodetts.onrender.com/?text=${object5a}`, function( buffer ) {
+    //sound.start(0);
+	sound.setBuffer( buffer );
+	sound.setLoop( false );
+	sound.setVolume( 0.5 );
+	sound.play();
+    
+}); 
+                };
+              
+                };
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			//
+
+			function render() {
+                requestAnimationFrame(render);
+				renderer.render( scene, camera );
+                
+
+			}
+
+		</script>

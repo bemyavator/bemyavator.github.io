@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+		<title>Demo1</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main2.css">
+		<link type="text/css" rel="stylesheet" href="/css/chatbot1.css">
+      
+	</head>
+
+	<body>
+
+		            <div id="data"></div>
+            <div style="display: none;" id="formats">Format: start recording to see sample rate</div>
+            <p style="display: none;"><strong>Recordings:</strong></p>
+            <ol style="display: none;" id="recordingsList"></ol>
+
+
+		{% include chatbotwithcolomn3.html %}
+        {% include script3.html %}
+<div style="color: black;" id="startButtonId">Open Mouth</div>
+<div style="color: black;" id="resetButtonId">Blink</div>
+<div style="color: black;" id="playtrack">play</div>
+<button onclick="dude()">Click me</button>
+<script src="/js/app.js"></script>
+<script src="/js/recorder.js"></script>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+<script>
+    MktoForms2.onFormRender(function( form ) {
+        var button_row = form.getFormElem().find( '.mktoButtonRow' );
+        var label      = button_row.find( 'button' ).html();
+        var legalese   = 'By clicking {{LABEL}}, I agree to the use of my personal data in accordance with {{ site.company }} <a href=\"/legal/privacy-policy/\">Privacy Policy</a>. {{ site.company }} will not sell, trade, lease, or rent your personal data to third parties.';
+        if ( button_row.data( 'inited' ) ) {
+            return;
+        }
+        button_row.data( 'inited', true );
+        button_row.after( '<div class="marketo-legal"></div>' );
+    } );
+</script>

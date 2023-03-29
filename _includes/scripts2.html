@@ -1,0 +1,9 @@
+<script>
+	$( window ).on( "load", function () {
+		$( "#page_footer_c47d423c5e230d6dd3e72e5bb33f4bdb .underlay.video" ).html( '<video autoplay muted loop><source src="/media/intro4.mp4" type="video/mp4"></video>' );
+		var vid = $( "#page_footer_c47d423c5e230d6dd3e72e5bb33f4bdb .underlay.video video" );
+		vid.on( "play", function () {
+			$( this ).addClass( 'fadein' ).addClass( 'animated' );
+		} );
+	} );
+	</script>

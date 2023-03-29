@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js" integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="/css/style.css" />
+		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+        <link type="text/css" rel="stylesheet" href="main.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+	</head>
+	<!--Coded With Love By Mutiullah Samim-->
+	<body>
+		
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+				<div class="col-md-4 col-xl-3 chat"><div id="retetr" class="card mb-sm-3 mb-md-0 contacts_card">
+                        
+					<div id="3dhead1" class="card-body contacts_body">
+                        <!--<model-viewer src="/assets/glb/will1.glb" alt="VR Headset" auto-rotate camera-controls ar ios-src="/assets/glb/will1.glb">
+                        </model-viewer>-->
+					</div>
+					<div class="card-footer"></div>
+				</div></div>
+				<div class="col-md-8 col-xl-6 chat">
+					<div class="card">
+						<div class="card-header msg_head">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="/media/d1.jpg" class="rounded-circle user_img">
+									<span class="online_icon"></span>
+								</div>
+								<div class="user_info">
+									<span>Chat with Khalid</span>
+							
+								</div>
+								
+							</div>
+							
+						</div>
+						<div id="body" class="card-body msg_card_body">
+                            
+                            <div id="data"></div>
+							<div style="display: none;" id="formats">Format: start recording to see sample rate</div>
+							<p style="display: none;"><strong>Recordings:</strong></p>
+							<ol style="display: none;" id="recordingsList"></ol>
+						
+							
+<audio id="myAudio">
+    <source id="audio1" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+ 
+							
+						</div>
+						<div class="card-footer">
+							<div class="input-group">
+								<div class="input-group-append">
+									<span id="recordButton" class="input-group-text attach_btn"><i class="fas fa-microphone"></i></span>
+									<span id="stopButton" class="input-group-text attach_btn"><i class="fa fa-microphone-slash" aria-hidden="true"></i></span>
+									<span style="display: none;" id="pauseButton" class="input-group-text attach_btn"><i class="fa fa-microphone-slash" aria-hidden="true"></i></span>
+								
+								</div>
+								<textarea name=""  id="userInput" class="form-control type_msg" placeholder="Type your message..."></textarea>
+								<div class="input-group-append">
+									<span class="input-group-text send_btn">
+											<i id="send" class="fas fa-location-arrow"></i>
+									
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+			
+			</div>
+			<button type="button">Blink</button>
+		</div>
+		<script type="text/javascript">
+
+			const image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+				const image1 = `{% include image2.html %}`;
+      
+			document.querySelector("#send").addEventListener("click", async () => {
+			  let xhr = new XMLHttpRequest();
+			  var userMessage = document.querySelector("#userInput").value
+			  let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
+			  document.querySelector('#body').innerHTML+= userHtml;
+			  xhr.open(`GET`, `https://chatapi-vd80.onrender.com/test123/${userMessage}`);
+			  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			  xhr.send(`messageValue=${userMessage}`);
+			  xhr.onload = function () {
+				var obj = JSON.parse(this.responseText);
+				var obj1q = JSON.stringify(this.responseText);
+				  let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2+'</div>'+'<div class="msg_cotainer">'+obj.traits.text[0].value+'</div>'+'</div>'
+				  document.querySelector('#body').innerHTML+= botHtml;
+                  document.getElementById("audio1").src = `https://nodetts.onrender.com/?text=${obj.traits.text[0].value}`;
+                  var y = document.getElementById("myAudio"); 
+                  y.play(); 
+			  }
+			})
+			
+		</script>
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "/build/three.module.js",
+					"three/addons/": "/jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+
+			let camera, scene, renderer;
+			let gui;
+
+			const state = { variant: 'midnight' };
+
+			init();
+			render();
+
+			function init() {
+//var checkbox = createNewCheckboxt('name', 'id'); // method defined in the question     
+const parent  = document.getElementById('3dhead1');
+//parent.appendChild(checkbox);
+
+				const container = document.createElement( 'div' );
+				container.setAttribute("id", "3dhead3");
+				parent.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( 0.1, 0.5, 3 );
+				const helper = new THREE.CameraHelper( camera );
+
+
+				scene = new THREE.Scene();
+				scene.add( helper );
+				new RGBELoader()
+					.setPath( '/textures/equirectangular/' )
+					.load( 'quarry_01_1k.hdr', function ( texture ) {
+
+						texture.mapping = THREE.EquirectangularReflectionMapping;
+
+						scene.background = null;
+						scene.environment = texture;
+
+						render();
+
+						// model
+
+						const loader = new GLTFLoader().setPath( '/assets/glb/' );
+						loader.load( 'test1.gltf', function ( gltf,model, animations ) {
+
+							gltf.scene.scale.set( 2.5, 2.5, 2.5 );
+
+							scene.add( gltf.scene );
+
+							// GUI
+							gui = new GUI();
+							
+						
+							// Details of the KHR_materials_variants extension used here can be found below
+							// https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_variants
+							const parser = gltf.parser;
+						//	const variantsExtension = gltf.userData.gltfExtensions[ 'KHR_materials_variants' ];
+						//	const variants = variantsExtension.variants.map( ( variant ) => variant.name );
+						//	const variantsCtrl = gui.add( state, 'variant', variants ).name( 'Variant' );
+						//	const dude45 = gui.add(cube.position, "x", -50, -50, 01 ).name ("X Position");
+
+						//	selectVariant( scene, parser, variantsExtension, state.variant );
+
+						//	variantsCtrl.onChange( ( value ) => selectVariant( scene, parser, variantsExtension, value ) );
+
+							render();
+
+						} );
+
+					} );
+
+				renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
+				renderer.setClearColor( 0x000000, 0 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 1;
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				container.appendChild( renderer.domElement );
+
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render ); // use if there is no animation loop
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.target.set( 0, 0.5, - 0.2 );
+				controls.autoRotateSpeed = -10.0;
+				controls.update();
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function selectVariant( scene, parser, extension, variantName ) {
+
+				const variantIndex = extension.variants.findIndex( ( v ) => v.name.includes( variantName ) );
+
+				scene.traverse( async ( object ) => {
+
+					if ( ! object.isMesh || ! object.userData.gltfExtensions ) return;
+
+					const meshVariantDef = object.userData.gltfExtensions[ 'KHR_materials_variants' ];
+
+					if ( ! meshVariantDef ) return;
+
+					if ( ! object.userData.originalMaterial ) {
+
+						object.userData.originalMaterial = object.material;
+
+					}
+
+					const mapping = meshVariantDef.mappings
+						.find( ( mapping ) => mapping.variants.includes( variantIndex ) );
+
+					if ( mapping ) {
+
+						object.material = await parser.getDependency( 'material', mapping.material );
+						parser.assignFinalMaterial( object );
+
+					} else {
+
+						object.material = object.userData.originalMaterial;
+
+					}
+
+					render();
+
+				} );
+
+			}
+			function initGUI() {
+				var guie = new dat.GUI();
+
+var cam = guie.addFolder('Camera');
+cam.add(options.camera, 'speed', 0, 0.0010).listen();
+cam.add(camera.position, 'y', 0, 100).listen();
+cam.open();
+
+// Set up dat.GUI to control targets
+const params = {
+	Smile: 0,
+	Twist: 0,
+};
+
+const gui = new GUI( { title: 'Morph Targets' } );
+
+gui.add( params, 'Smile', 0, 1 ).step( 0.01 ).onChange( function ( value ) {
+
+	mesh.morphTargetInfluences[ 0 ] = value;
+
+} );
+
+
+}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			//
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+		  	<script src="/js/recorder.js"></script>
+			  <script src="/js/app.js"></script>
+			  <script src="/assets/js/scripts.js"></script>
+	</body>
+</html>

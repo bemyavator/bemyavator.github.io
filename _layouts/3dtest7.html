@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - GLTFloader + variants</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main1.css">
+	</head>
+
+	<body>
+	
+		<!-- Import maps polyfill -->
+		<!-- Remove this when import maps will be widely supported -->
+		<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "/build/three.module.js",
+					"three/addons/": "/jsm/"
+				}
+			}
+		</script>
+<script>           
+
+//let box = document.querySelector('#Div1');
+   // let width = box.offsetWidth;
+   //let width1 = document.getElementById('Div1').offsetWidth;
+   //let height1 = document.getElementById('Div1').offsetHeight;
+   // let height = box.offsetHeight;
+    //console.log({ width1, height1 });
+    
+    </script>
+		<script type="module">
+
+			import * as THREE from 'three';
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+
+			let container, stats, clock, gui, mixer, actions, activeAction, previousAction;
+			let camera, scene, renderer, model, face;
+
+			const api = { state: 'Walking' };
+ 
+
+			//const state = { variant: 'midnight' };
+
+			init();
+			render();
+            animate();
+
+			function init() {
+
+				const container = document.createElement( 'div' );
+                container.setAttribute("id", "Div1");
+				document.body.appendChild( container );
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 10 );
+                // need to make sure the camera is properly positioned before scene is rendered
+				camera.position.set( 0, 0, 10 );
+				scene = new THREE.Scene();
+                clock = new THREE.Clock();
+				new RGBELoader()
+					.setPath( '/textures/equirectangular/' )
+					.load( 'quarry_01_1k.hdr', function ( texture ) {
+
+						texture.mapping = THREE.EquirectangularReflectionMapping;
+
+						//  scene.background = texture;
+						scene.environment = texture;
+                        scene.background = new THREE.Color( 0xe0e0e0 );
+                        const geometry = createGeometry();
+
+						//render();
+						// model
+						const loader = new GLTFLoader().setPath( '/assets/glb/' );
+						loader.load( 'will1.glb', function ( gltf ) {
+							gltf.scene.scale.set( 10.0, 10.0, 10.0 );
+                          
+							scene.add( gltf.scene );
+                           
+							// GUI
+						//      	gui = new GUI();
+							// Details of the KHR_materials_variants extension used here can be found below
+							// https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_variants
+							const parser = gltf.parser;
+                           
+						//	const variantsExtension = gltf.userData.gltfExtensions[ 'KHR_materials_variants' ];
+						//	const variants = variantsExtension.variants.map( ( variant ) => variant.name );
+						//	const variantsCtrl = gui.add( state, 'variant', variants ).name( 'Variant' );
+						//	selectVariant( scene, parser, variantsExtension, state.variant );
+						//	variantsCtrl.onChange( ( value ) => selectVariant( scene, parser, variantsExtension, value ) );
+                        const mesh = gltf.scene.children[ 0 ];
+                        
+                       scene.add( mesh );
+					   mesh.scale.set(20,20,20);
+                       createGUI( model, mesh.animations );
+                       console.log( mesh.name);
+                       const head = mesh.getObjectByName( 'Will' );
+                        const influences = head.morphTargetInfluences;
+                        console.log( head.morphTargetInfluences[1]);
+                      //  mixer = new THREE.AnimationMixer( mesh );
+                      //  mixer.clipAction( mesh.animations[ 0 ] ).play();
+                        // GUI
+                        mixer = new THREE.AnimationMixer( head );
+                     //   mixer.clipAction( head.animations[ 0 ] ).setDuration( 1 ).play();
+                        const gui = new GUI();
+                        gui.close();
+						render();
+						} );
+					} );
+				renderer = new THREE.WebGLRenderer( { antialias: true , alpha: true } );
+                renderer.setClearColor( 0x000000, 0 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+//                renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 1;
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				container.appendChild( renderer.domElement );
+				const controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render ); // use if there is no animation loop
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.target.set( 0, 0.5, - 0.2 );
+				controls.update();
+				window.addEventListener( 'resize', onWindowResize );
+                stats = new Stats();
+				container.appendChild( stats.dom );
+
+			}
+
+            
+					render();
+
+                    
+			function createGUI( model, animations ) {
+
+const states = [ 'Idle', 'Walking', 'Running', 'Dance', 'Death', 'Sitting', 'Standing' ];
+const emotes = [ 'Jump', 'Yes', 'No', 'Wave', 'Punch', 'ThumbsUp' ];
+
+gui = new GUI();
+
+mixer = new THREE.AnimationMixer( model );
+
+actions = {};
+
+const wireFolder = gui.addFolder( 'Wire' );
+
+
+				// Set up dat.GUI to control targets
+				const params = {
+					LookDown: 0,
+					Twist: 0,
+				};
+				//const gui = new GUI( { title: 'Morph Targets' } );
+				/*
+				this.mesh.morphTargetInfluences[e] += .5 * (t - this.mesh.morphTargetInfluences[e]),
+                    e = this.mesh.morphTargetDictionary["Look Down"],
+                    t = this.stateLookY > 0 ? this.stateLookY : 0,
+                    t = this.stateBlink ? 0 : t, 
+				*/
+				wireFolder.add( params, 'LookDown', 0, 1 ).step( 0.01 ).onChange( function ( value ) {
+
+					mesh.morphTargetInfluences[ 0 ] = value;
+
+				} );
+				wireFolder.add( params, 'Twist', 0, 1 ).step( 0.01 ).onChange( function ( value ) {
+
+					mesh.morphTargetInfluences[ 1 ] = value;
+
+				} );
+
+			
+
+
+
+// states
+
+
+// emotes
+
+
+
+// expressions
+console.log(window);
+face = mesh.getObjectByName( 'Will' );
+
+const expressions = Object.keys( face.morphTargetDictionary );
+const expressionFolder = gui.addFolder( 'Expressions' );
+
+for ( let i = 0; i < expressions.length; i ++ ) {
+
+    expressionFolder.add( face.morphTargetInfluences, i, 0, 1, 0.01 ).name( expressions[ i ] );
+
+}
+
+activeAction = actions[ 'Walking' ];
+activeAction.play();
+
+expressionFolder.open();
+
+}
+
+            function createGeometry() {
+
+const geometry = new THREE.BoxGeometry( 2, 2, 2, 32, 32, 32 );
+
+
+// create an empty array to  hold targets for the attribute we want to morph
+// morphing positions and normals is supported
+geometry.morphAttributes.position = [];
+
+// the original positions of the cube's vertices
+const positionAttribute = geometry.attributes.position;
+
+// for the first morph target we'll move the cube's vertices onto the surface of a sphere
+const spherePositions = [];
+
+// for the second morph target, we'll twist the cubes vertices
+const twistPositions = [];
+const direction = new THREE.Vector3( 1, 0, 0 );
+const vertex = new THREE.Vector3();
+
+for ( let i = 0; i < positionAttribute.count; i ++ ) {
+
+    const x = positionAttribute.getX( i );
+    const y = positionAttribute.getY( i );
+    const z = positionAttribute.getZ( i );
+
+    spherePositions.push(
+
+        x * Math.sqrt( 1 - ( y * y / 2 ) - ( z * z / 2 ) + ( y * y * z * z / 3 ) ),
+        y * Math.sqrt( 1 - ( z * z / 2 ) - ( x * x / 2 ) + ( z * z * x * x / 3 ) ),
+        z * Math.sqrt( 1 - ( x * x / 2 ) - ( y * y / 2 ) + ( x * x * y * y / 3 ) )
+
+    );
+
+    // stretch along the x-axis so we can see the twist better
+    vertex.set( x * 2, y, z );
+
+    vertex.applyAxisAngle( direction, Math.PI * x / 2 ).toArray( twistPositions, twistPositions.length );
+
+}
+
+// add the spherical positions as the first morph target
+geometry.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( spherePositions, 3 );
+
+// add the twisted positions as the second morph target
+geometry.morphAttributes.position[ 1 ] = new THREE.Float32BufferAttribute( twistPositions, 3 );
+
+return geometry;
+
+}
+			function onWindowResize() {
+
+                let box = document.querySelector('#Div1');
+        let width = box.offsetWidth;
+        let height = box.offsetHeight;
+
+				camera.aspect = window.offsetWidth / window.offsetHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+
+				render();
+
+			}
+
+			function render() {
+
+                
+				renderer.render( scene, camera );
+
+			}
+
+            function animate() {
+
+var dt = clock.getDelta();  
+
+if ( mixer ) mixer.update( dt );
+
+requestAnimationFrame( animate );
+
+renderer.render( scene, camera );
+
+stats.update();
+
+};
+
+        </script>
+        
+		<div id="ctrl">
+			Use controls to change morph target influences:<br/>
+			<!--
+			<input type="range">是滑动条，onchange事件只会在拖动滑动条，然后松开鼠标时执行(类似onmouseup)
+			事件绑定有三种方式：
+			1、HTML中：
+			<element onchange="SomeJavaScriptCode">
+			或
+			<element onchange="myFunction()">
+			2、JavaScript中：
+			object.onchange=function(){SomeJavaScriptCode};
+			
+			morphTargetInfluences表示形变目标的影响
+			变形后的点坐标为：V[i] = V[i] + (↑P↓j=0) ∑ MTI[j] * (V[i,j] - V[i])
+			-->
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 0 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 1 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 2 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 3 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 4 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 5 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 6 ] = this.value/100;" />
+			<input type="range" value="0" min="0" max="100" onchange="head.morphTargetInfluences[ 7 ] = this.value/100;" />
+		</div>
+
+
+<script>
+    console.log();
+    
+    </script>
+	</body>
+</html>
