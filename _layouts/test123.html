@@ -9,6 +9,10 @@
 		<link type="text/css" rel="stylesheet" href="/main.css">
 		<link rel="stylesheet" href="/AssistBot.css" type="text/css">
 		<style>
+			.closed{
+    width: 90px !important;
+	right: 230px !important;
+}
 			body{font-family:Arial;font-size:14px;}
 			.utc_textbox{display:inline-block;margin-top:7px;border:1px solid silver;width:150px;height:20px;font-family:Arial;font-size:14px;padding-left:4px;padding-right:4px;}
 			.utc_submitbox{display:inline-block;margin-top:7px;border:1px solid silver;height:23px;font-family:Arial;font-size:14px;}
@@ -107,7 +111,7 @@
 				scene.add( mesh );
 
 				const loader = new GLTFLoader();
-				loader.load( '/models/gltf/Xbot1.glb', function ( gltf ) {
+				loader.load( '{{page.model}}', function ( gltf ) {
 
 					model = gltf.scene;
 					scene.add( model );
