@@ -101,5 +101,8 @@ header.header .navigation .nav-drawer .menu-wrapper .menu-item2 {
         line-height: 28px;
         padding: 0 1rem;
         outline: none;
-        color: #fff;
+        color: #000;
+    }
+    #button1{
+        width: 98%;
     }
