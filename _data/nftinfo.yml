@@ -1,0 +1,26 @@
+- name: ACOG
+  nftinfo:
+    - first: Commercial License on Art.
+    - second: Vote.
+    - third: VIP Access.
+    - fourth: Max 20 ETH in sales*
+    - fifth: Central location
+    - sixth: Future Airdrops elligibility
+
+- name: ACL
+  nftinfo:
+    - first: Commercial License on Art.
+    - second: Vote.
+    - third: Access
+    - fourth: Max 10 ETH in sales*
+    - fifth:
+    - sixth: DIY
+
+- name: ACC1 Bronze
+  nftinfo:
+    - first: Full Commercial License on Art.
+    - second: Vote.
+    - third: Access
+    - fourth: Max 20 ETH  in sales*
+    - fifth:
+    - sixth: DIY
