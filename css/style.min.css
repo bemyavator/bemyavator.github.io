@@ -91,3 +91,15 @@ header.header .navigation .nav-drawer .menu-wrapper .menu-item2 {
     .menu-item2>a:hover{
         color: #39f0ba;
     }
+
+    .inputnumber{
+        width: 100%;
+        min-height: 50px;
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        padding: 0 1rem;
+        outline: none;
+        color: #fff;
+    }
