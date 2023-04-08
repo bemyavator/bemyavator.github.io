@@ -94,6 +94,13 @@
                 var eyeL = textureLoader.load('/assets/glb/textures/Std_Eye_L_Diffuse.png');
                 var corneaR = textureLoader.load('/assets/glb/textures/Std_Cornea_R_Diffuse.png');
                 var eyeR = textureLoader.load('/assets/glb/textures/Std_Eye_R_Diffuse.png');
+                var eyeRO = textureLoader.load('/assets/glb/textures/Std_Eye_Occlusion_R_Diffuse.jpg');
+                var eyeLO = textureLoader.load('/assets/glb/textures/Std_Eye_Occlusion_L_Diffuse.jpg');
+                var hair02 = textureLoader.load('/assets/glb/textures/Hair_Transparency_Diffuse.png');
+                var scalp = textureLoader.load('/assets/glb/textures/Scalp_Transparency_Diffuse.jpg');
+                var hair02Material = new THREE.MeshPhongMaterial({map:hair02});
+                var eyeLOMaterial = new THREE.MeshPhongMaterial({map:eyeLO});
+                var eyeROMaterial = new THREE.MeshPhongMaterial({map:eyeRO});
                 var eyeLMaterial = new THREE.MeshPhongMaterial({map:eyeL});
                 var corneaLMaterial = new THREE.MeshPhongMaterial({map: corneaL});
                 var eyeRMaterial = new THREE.MeshPhongMaterial({map:eyeR});
@@ -112,6 +119,7 @@
                 var eyelashMaterial = new THREE.MeshPhongMaterial({map: eyelash});
                 var hairMaterial = new THREE.MeshPhongMaterial({map: hair});
                 var hair01Material = new THREE.MeshPhongMaterial({map: hair01});
+                var scalpMaterial = new THREE.MeshPhongMaterial({map: scalp});
 				const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.receiveShadow = true;
@@ -137,6 +145,10 @@
 						if ( child.isMesh ) {
                             if ( child.name == "will"){
                                 child.material[0] = skirtMaterial;
+                                child.material[1] = scalpMaterial;
+                                child.material[2] = hair02Material;
+                                child.material[3] = eyeROMaterial;
+                                child.material[4] = eyeLOMaterial;
                                 child.material[5] = eyeRMaterial;
                                 child.material[6] = corneaRMaterial;
                                 child.material[7] = eyeLMaterial;
