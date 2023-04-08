@@ -2,17 +2,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - FBX loader</title>
+		{% include head5.html %}
+		<title>three.js webgl - additive animation - skinning</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main.css">
+		<meta name="viewport" content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="/main.css">
+		<link rel="stylesheet" href="/AssistBot.css" type="text/css">
+		<style>
+			body{font-family:Arial;font-size:14px;}
+			.utc_textbox{display:inline-block;margin-top:7px;border:1px solid silver;width:150px;height:20px;font-family:Arial;font-size:14px;padding-left:4px;padding-right:4px;}
+			.utc_submitbox{display:inline-block;margin-top:7px;border:1px solid silver;height:23px;font-family:Arial;font-size:14px;}
+		
+			a {
+				color: blue;
+			}
+			.control-inactive button {
+				color: #888;
+			}
+		</style>
+		<div id="container"></div>
+		<div id="info">
+	
+	{% include header1.html %}
+		</div>
 	</head>
 
 	<body>
-		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - FBXLoader<br />
-			Character and animation from <a href="https://www.mixamo.com/" target="_blank" rel="noopener">Mixamo</a>
-		</div>
+
 
 		<!-- Import maps polyfill -->
 		<!-- Remove this when import maps will be widely supported -->
@@ -35,10 +51,28 @@
 
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 			THREE.ColorManagement.enabled = true;
 
 			let camera, scene, renderer, stats;
+			let model, skeleton;
+			const crossFadeControls = [];
+
+		//	let currentBaseAction = 'idle';
+			const allActions = [];
+			const baseActions = {
+				idle: { weight: 1 },
+				walk: { weight: 0 },
+				run: { weight: 0 }
+			};
+			const additiveActions = {
+				sneak_pose: { weight: 0 },
+				sad_pose: { weight: 0 },
+				agree: { weight: 0 },
+				headShake: { weight: 0 }
+			};
+			let panelSettings, numAnimations;
 
 			const clock = new THREE.Clock();
 
@@ -200,6 +234,87 @@
 				container.appendChild( stats.dom );
 
 			}
+			function createPanel() {
+
+const panel = new GUI( { width: 310 } );
+
+const folder1 = panel.addFolder( 'Base Actions' );
+const folder2 = panel.addFolder( 'Additive Action Weights' );
+const folder3 = panel.addFolder( 'General Speed' );
+
+panelSettings = {
+	'modify time scale': 1.0
+};
+
+const baseNames = [ 'None', ...Object.keys( baseActions ) ];
+
+for ( let i = 0, l = baseNames.length; i !== l; ++ i ) {
+
+	const name = baseNames[ i ];
+	const settings = baseActions[ name ];
+	panelSettings[ name ] = function () {
+
+		const currentSettings = baseActions[ currentBaseAction ];
+		const currentAction = currentSettings ? currentSettings.action : null;
+		const action = settings ? settings.action : null;
+
+		if ( currentAction !== action ) {
+
+			prepareCrossFade( currentAction, action, 0.35 );
+
+		}
+
+	};
+
+	crossFadeControls.push( folder1.add( panelSettings, name ) );
+
+}
+
+for ( const name of Object.keys( additiveActions ) ) {
+
+	const settings = additiveActions[ name ];
+
+	panelSettings[ name ] = settings.weight;
+	folder2.add( panelSettings, name, 0.0, 1.0, 0.01 ).listen().onChange( function ( weight ) {
+
+		setWeight( settings.action, weight );
+		settings.weight = weight;
+
+	} );
+
+}
+
+folder3.add( panelSettings, 'modify time scale', 0.0, 1.5, 0.01 ).onChange( modifyTimeScale );
+
+folder1.open();
+folder2.open();
+folder3.open();
+
+crossFadeControls.forEach( function ( control ) {
+
+	control.setInactive = function () {
+
+		control.domElement.classList.add( 'control-inactive' );
+
+	};
+
+	control.setActive = function () {
+
+		control.domElement.classList.remove( 'control-inactive' );
+
+	};
+
+	const settings = baseActions[ control.property ];
+
+	if ( ! settings || ! settings.weight ) {
+
+		control.setInactive();
+
+	}
+
+} );
+
+}
 
 			function onWindowResize() {
 
@@ -227,4 +342,15 @@
 		</script>
 
 	</body>
+	<foot style="background-color:grey;position: absolute;width:100%;bottom: -86px;">
+		<div id="container2"></div>
+		<div id="foot">
+	{% include footwrap.html %}
+	
+		</div>
+
+
+
+
+	</foot>
 </html>
