@@ -11,6 +11,10 @@
 		<style>
 			body{font-family:Arial;font-size:14px;}
 			footer.copyright {padding: 0px !important;}
+			.closed{
+    width: 90px !important;
+	right: 230px !important;
+}
 			.footer-wrap{height: 5px !important;}
 			.utc_textbox{display:inline-block;margin-top:7px;border:1px solid silver;width:150px;height:20px;font-family:Arial;font-size:14px;padding-left:4px;padding-right:4px;}
 			.utc_submitbox{display:inline-block;margin-top:7px;border:1px solid silver;height:23px;font-family:Arial;font-size:14px;}
@@ -249,6 +253,8 @@ cameraFolder.open();
 panelSettings = {
 	'modify time scale': 1.0
 };
+
+gui.close();
 
 crossFadeControls.forEach( function ( control ) {
 
