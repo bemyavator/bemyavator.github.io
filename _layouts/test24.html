@@ -234,19 +234,45 @@
 				// stats
 				stats = new Stats();
 				container.appendChild( stats.dom );
+				controls.update();
 
 			}
-			function createPanel() {
-
-const panel = new GUI( { width: 310 } );
-
-const folder1 = panel.addFolder( 'Base Actions' );
-const folder2 = panel.addFolder( 'Additive Action Weights' );
-const folder3 = panel.addFolder( 'General Speed' );
-
+			const gui = new GUI()
+const folder1 = gui.addFolder('Base Actions');
+const folder2 = gui.addFolder( 'Additive Action Weights' );
+const folder3 = gui.addFolder( 'General Speed' );
+const cameraFolder = gui.addFolder('Camera');
+cameraFolder.add(camera.position, 'z', 0, 10);
+cameraFolder.open();
 panelSettings = {
 	'modify time scale': 1.0
 };
+
+crossFadeControls.forEach( function ( control ) {
+
+control.setInactive = function () {
+
+	control.domElement.classList.add( 'control-inactive' );
+
+};
+
+control.setActive = function () {
+
+	control.domElement.classList.remove( 'control-inactive' );
+
+};
+
+const settings = baseActions[ control.property ];
+
+if ( ! settings || ! settings.weight ) {
+
+	control.setInactive();
+
+}
+
+} );
+
+
 
 const baseNames = [ 'None', ...Object.keys( baseActions ) ];
 
@@ -292,33 +318,8 @@ folder1.open();
 folder2.open();
 folder3.open();
 
-crossFadeControls.forEach( function ( control ) {
 
-	control.setInactive = function () {
-
-		control.domElement.classList.add( 'control-inactive' );
-
-	};
-
-	control.setActive = function () {
-
-		control.domElement.classList.remove( 'control-inactive' );
-
-	};
-
-	const settings = baseActions[ control.property ];
-
-	if ( ! settings || ! settings.weight ) {
-
-		control.setInactive();
-
-	}
-
-} );
-
-}
-
-			function onWindowResize() {
+		function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
@@ -330,6 +331,7 @@ crossFadeControls.forEach( function ( control ) {
 			function animate() {
 
 				requestAnimationFrame( animate );
+				
 
 				const delta = clock.getDelta();
 
