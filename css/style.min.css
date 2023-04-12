@@ -133,11 +133,17 @@ header.header .navigation .nav-drawer .menu-wrapper .menu-item2 {
         width: 4.5rem;
         left: 50%;
     }.infos {
-        background-color: #fff;
-        border-bottom: 1px solid #e2eef1;
+        background-image: url("/media/prrofile.png") !important;
+        background-repeat: no-repeat !important;
+        background-size: 100% !important;
         padding: 20px 0;
+        height: 350px;
     }
     @media (min-width: 1400px)
 .container1, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     max-width: 1400px;
+}.profile123{
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
