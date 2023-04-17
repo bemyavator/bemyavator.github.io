@@ -65,7 +65,16 @@ let camera, actionname, scene, renderer, stats, object;
 let mixer, model, skeleton, currentBaseAction, prepareCrossFade, idle,animations, walk, idle4;
 const crossFadeControls = [];
 
+var action = {};
+var activeActionName = 'idle';
 
+var arrAnimations = [
+  'idle',
+  'walk',
+  'run',
+  'hello'
+];
+var actualAnimation = 0;
 
 let panelSettings, numAnimations;
 
@@ -169,9 +178,20 @@ mixer = new THREE.AnimationMixer( object );
 
 const clips = object.animations;
 
+action.hello = mixer.clipAction(clips[ 1 ]);
+action.idle = mixer.clipAction(clips[ 8 ]);
+action.run = mixer.clipAction(clips[ 0 ]);
+action.walk = mixer.clipAction(clips[ 4 ]);
 
+action.hello.setEffectiveWeight(1);
+action.idle.setEffectiveWeight(1);
+action.run.setEffectiveWeight(1);
+action.walk.setEffectiveWeight(1);
 
-//folder1.add(idle4, 0,1);
+action.hello.enabled = true;
+action.idle.enabled = true;
+action.run.enabled = true;
+action.walk.enabled = true;
 
 let idle = mixer.clipAction( clips[ 8 ] );
 let walk = mixer.clipAction( clips[ 11 ] );
@@ -181,133 +201,41 @@ let headShake = mixer.clipAction( clips[ 2 ] );
 let agree = mixer.clipAction( clips[ 2 ] );
 let run = mixer.clipAction( clips[ 0 ] );
 
-function buttonFunction4() {
-//const action = mixer.clipAction( clips[ 2 ] );
-actionname = None
-mixer.stopAllAction();
-//idle.play();
-}
-var params4 = {
-None: buttonFunction4
-};
-
-folder1.add(params4, 'None');
-
-function buttonFunction1() {
-//const action = mixer.clipAction( clips[ 2 ] );
-//idle:{weight:0};
-
-if (actionname == "walk"){
-    walk.fadeOut(0.5)
-  
-walk.reset()
-  run.fadeIn(0.5)
-  run.play()
-}else{
-   
-run.play()
-}
-actionname = "run";
-}
-var params1 = {
-run: buttonFunction1
-};
-
-folder1.add(params1, 'run');
-
-function buttonFunction2() {
-    run.fadeOut(0.5)
-  
-            run.reset()
-            walk.fadeIn(0.5)
-            walk.play()
-            actionname = "walk";
-/*
-action1.fadeOut (0.3);
-action1.stop(1);
-const action = mixer.clipAction( clips[ 2 ] );
-run.fadeOut (0.3);
-run.stop(1);
-mixer = new THREE.AnimationMixer( object );
-mixer = new THREE.AnimationMixer( object );
-let dude = mixer.clipAction( clips[ 11 ], object );
-actionname = "walk";
-dude.fadeIn(0.2);
-dude.play();
-*/
-}
-var params2 = {
-walk: buttonFunction2
-};
-
-folder1.add(params2, 'walk');
-
-function buttonFunction3() {
-//action1.fadeOut (0.3);
-//action1.stop(1);
-//run.stop();
-//mixer.stopAllAction();
-//const action = mixer.clipAction( clips[ 11 ] );
-//action.play();
-//alert('dude');
-run.stop();
-idle.play();
-}
-var params3 = {
-idle: buttonFunction3
-};
-
-folder1.add(params3, 'idle');
-
-// Update the mixer on each frame
-function update () {
-mixer.update( deltaSeconds );
-}
-
-
-
+{% include actions.html %}
 object.traverse( function ( child ) {
-
-	if ( child.isMesh ) {
-                            if ( child.name == "will"){
-                                child.material[0] = skirtMaterial;
-                                child.material[1] = scalpMaterial;
-                                child.material[2] = hair02Material;
-                                child.material[3] = eyeROMaterial;
-                                child.material[4] = eyeLOMaterial;
-                                child.material[5] = eyeRMaterial;
-                                child.material[6] = corneaRMaterial;
-                                child.material[7] = eyeLMaterial;
-                                child.material[8] = corneaLMaterial;
-                                child.material[9] = hairMaterial;
-                                child.material[10] = headMaterial;
-                                child.material[11] = bodyMaterial;
-                                child.material[12] = armMaterial;
-                                child.material[13] = legMaterial;
-                                child.material[14] = nailMaterial;
-                                child.material[15] = eyelashMaterial;
-                                child.material[16] = tearRMaterial;
-                                child.material[17] = tearLMaterial;
-                                child.material[18] = tongueMaterial;
-                                child.material[19] = upperMaterial;
-                                child.material[20] = lowerMaterial;
-                                child.material[21] = hair01Material;
-                                console.log('working'); 
-              }
-
-							child.castShadow = true;
-							child.receiveShadow = true;
-
-						}
-
-					} );
-                 
-
+if ( child.isMesh ) {
+if ( child.name == "will"){
+child.material[0] = skirtMaterial;
+child.material[1] = scalpMaterial;
+child.material[2] = hair02Material;
+child.material[3] = eyeROMaterial;
+child.material[4] = eyeLOMaterial;
+child.material[5] = eyeRMaterial;
+child.material[6] = corneaRMaterial;
+child.material[7] = eyeLMaterial;
+child.material[8] = corneaLMaterial;
+child.material[9] = hairMaterial;
+child.material[10] = headMaterial;
+child.material[11] = bodyMaterial;
+child.material[12] = armMaterial;
+child.material[13] = legMaterial;
+child.material[14] = nailMaterial;
+child.material[15] = eyelashMaterial;
+child.material[16] = tearRMaterial;
+child.material[17] = tearLMaterial;
+child.material[18] = tongueMaterial;
+child.material[19] = upperMaterial;
+child.material[20] = lowerMaterial;
+child.material[21] = hair01Material;
+console.log('working'); 
+}
+child.castShadow = true;
+child.receiveShadow = true;
+}});
 
 scene.add( object );
 console.log(object); 
-
-} );
+});
 
 renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setPixelRatio( window.devicePixelRatio );
@@ -353,78 +281,24 @@ panelSettings = {
 
 gui.close();
 
-
-
-
-//const baseNames = [ 'None', ...Object.keys( baseActions ) ];
-/*
-for ( let i = 0, l = baseNames.length; i !== l; ++ i ) {
-
-const name = baseNames[ i ];
-const settings = baseActions[ name ];
-panelSettings[ name ] = function () {
-
-const currentSettings = baseActions[ currentBaseAction ];
-const currentAction = currentSettings ? currentSettings.action : null;
-const action = settings ? settings.action : null;
-
-if ( currentAction !== action ) {
-
-prepareCrossFade( currentAction, action, 0.35 );
-
-}
-
-};
-
-crossFadeControls.push( folder1.add( panelSettings, name ) );
-
-}
-
-for ( const name of Object.keys( additiveActions ) ) {
-
-const settings = additiveActions[ name ];
-
-panelSettings[ name ] = settings.weight;
-folder2.add( panelSettings, name, 0.0, 1.0, 0.01 ).listen().onChange( function ( weight ) {
-
-setWeight( settings.action, weight );
-settings.weight = weight;
-
-} );
-
-
-
-}
-*/
 folder3.add( panelSettings, 'modify time scale', 0.0, 1.5, 0.01 ).onChange( modifyTimeScale );
-
 folder1.open();
 folder2.open();
 folder3.open();
 
 
 function onWindowResize() {
-
 camera.aspect = window.innerWidth / window.innerHeight;
 camera.updateProjectionMatrix();
-
 renderer.setSize( window.innerWidth, window.innerHeight );
-
 }
 
 function animate() {
-
 requestAnimationFrame( animate );
-
-
 const delta = clock.getDelta();
-
 if ( mixer ) mixer.update( delta );
-
 renderer.render( scene, camera );
-
 stats.update();
-
 }
 
 

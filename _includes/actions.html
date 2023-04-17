@@ -1,0 +1,88 @@
+function buttonFunction4() {
+//const action = mixer.clipAction( clips[ 2 ] );
+actionname = "None"
+//mixer.stopAllAction();
+//idle.play();
+action.idle.play();
+action.run.enabled = true;
+action.run.setEffectiveWeight(0);
+}
+
+var params4 = {
+None: buttonFunction4
+};
+
+folder1.add(params4, 'None');
+
+function buttonFunction1() {
+//const action = mixer.clipAction( clips[ 2 ] );
+//idle:{weight:0};
+/*
+if (actionname == "walk"){
+walk.fadeOut(0.5)
+
+walk.reset()
+run.fadeIn(0.5)
+run.play()
+}else{
+
+run.play()
+}
+*/
+action.run.enabled = true;
+action.run.setEffectiveWeight(1); 
+
+actionname = "run";
+}
+var params1 = {
+run: buttonFunction1
+};
+
+folder1.add(params1, 'run');
+
+function buttonFunction2() {
+run.fadeOut(0.5)
+
+run.reset()
+walk.fadeIn(0.5)
+walk.play()
+actionname = "walk";
+/*
+action1.fadeOut (0.3);
+action1.stop(1);
+const action = mixer.clipAction( clips[ 2 ] );
+run.fadeOut (0.3);
+run.stop(1);
+mixer = new THREE.AnimationMixer( object );
+mixer = new THREE.AnimationMixer( object );
+let dude = mixer.clipAction( clips[ 11 ], object );
+actionname = "walk";
+dude.fadeIn(0.2);
+dude.play();
+*/
+}
+var params2 = {
+walk: buttonFunction2
+};
+
+folder1.add(params2, 'walk');
+
+function buttonFunction3() {
+//action1.fadeOut (0.3);
+//action1.stop(1);
+//run.stop();
+//mixer.stopAllAction();
+//const action = mixer.clipAction( clips[ 11 ] );
+//action.play();
+//alert('dude');
+run.stop();
+idle.play();
+}
+var params3 = {
+idle: buttonFunction3
+};
+
+folder1.add(params3, 'idle');
+function update () {
+mixer.update( deltaSeconds );
+}
