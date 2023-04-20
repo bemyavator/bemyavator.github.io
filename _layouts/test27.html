@@ -267,14 +267,15 @@ const gui = new GUI()
 const folder1 = gui.addFolder('Base Actions');
 const folder2 = gui.addFolder( 'Additive Action Weights' );
 const folder3 = gui.addFolder( 'General Speed' );
-const cameraFolder = gui.addFolder('Camera');
+const cameraFolder = gui.addFolder('Camera Position');
+const cameraFolder1 = gui.addFolder('Camera Rotation');
 //folder2.add( 'dude', 0, 1);
 cameraFolder.add(camera.position, 'z', -10000, 10000);
 cameraFolder.add(camera.position, 'y', 0, 300);
 cameraFolder.add(camera.position, 'x', -10000, 10000);
-cameraFolder.add(camera.rotation, 'z', -2, 2);
-cameraFolder.add(camera.rotation, 'y', -2, 2);
-cameraFolder.add(camera.rotation, 'x', -2, 2);
+cameraFolder1.add(camera.rotation, 'z', -6, 6);
+cameraFolder1.add(camera.rotation, 'y', -6, 6);
+cameraFolder1.add(camera.rotation, 'x', -6, 6);
 
 cameraFolder.open();
 panelSettings = {
