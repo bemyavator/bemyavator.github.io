@@ -272,7 +272,9 @@ const cameraFolder = gui.addFolder('Camera');
 cameraFolder.add(camera.position, 'z', -10000, 10000);
 cameraFolder.add(camera.position, 'y', 0, 300);
 cameraFolder.add(camera.position, 'x', -10000, 10000);
-
+cameraFolder.add(camera.rotation, 'z', -2, 2);
+cameraFolder.add(camera.rotation, 'y', -2, 2);
+cameraFolder.add(camera.rotation, 'x', -2, 2);
 
 cameraFolder.open();
 panelSettings = {
