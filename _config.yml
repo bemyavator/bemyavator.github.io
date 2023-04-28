@@ -18,6 +18,17 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+
+# Front Matter Defaults
+defaults:
+  # _posts
+- scope:
+    path: "_posts"
+    type: post
+  values:
+    layout: blogpage
+    read_time: true
+    permalink: /blog/:title
 title: Emersa
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
@@ -37,16 +48,6 @@ include:
 downloadlink: https://drive.google.com/uc?export=download&id=17l7di-fx1ERvu6XHM24Z1a6nu6fwZNIO
 
 
-# Front Matter Defaults
-defaults:
-  # _posts
-- scope:
-    path: "_posts"
-    type: posts
-  values:
-    layout: blogpage
-    read_time: true
-    permalink: /blog/:title
 
 
 # Exclude from processing.
