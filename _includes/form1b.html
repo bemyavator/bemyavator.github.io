@@ -66,7 +66,7 @@ $(document).ready(function() {
 		var password = $('#password').val();
 		if(name!="" && email!="" && phone!="" && password!="" ){
 			$.ajax({
-				url: "https://membershipapi.onrender.com/api/auth/signin",
+				url: "https://membershipapi.onrender.com/api/auth/signin/",
 				type: "POST",
 				data: {
 					type: 1,
@@ -102,13 +102,17 @@ $(document).ready(function() {
 		var password = $('#password_log').val();
 		if(email!="" && password!="" ){
 			$.ajax({
-				url: "https://membershipapi.onrender.com/api/auth/signin",
-				type: "POST",
-				data: {
-					type:2,
-					email: email,
-					password: password						
-				},
+                "async": true,
+  "crossDomain": true,
+  "url": "https://membershipapi.onrender.com/api/auth/signin/",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "106cd2cd-c4cb-1b1d-9f53-d7e7922dee85"
+  },
+  "processData": false,
+  "data": "{\"email\":\"justin@Dfdf.com\",\n\"password\":\"sdfsdfs\"}\n",
 				cache: false,
 				success: function(dataResult){
 					var dataResult = JSON.parse(dataResult);
