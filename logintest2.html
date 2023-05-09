@@ -2,9 +2,9 @@
     <head></head>
     <body>
         <form name="person">
-            <input name="email">
-            <input name="username">
-            <input name="password">
+            <input id="email" name="email">
+            <input id="username" name="username">
+            <input id="password" name="password">
           
           </form>
           <button id="sendMessage">
@@ -19,33 +19,21 @@
     let password = formData.password;
     // add one more field
     formData.append("middle", "Lee");
+    var number = {
+           email: document.getElementById('email').value,
+           username: document.getElementById('username').value, 
+           password: document.getElementById('password').value
+         }
   
     // send it out
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "https://membershipapi.onrender.com/api/auth/signup");
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    let body = JSON.stringify({'username': `${username1}`, 'email': `${email1}`,'role':'user', 'password': `${password}`})
+    let body = JSON.stringify(number);
     document.getElementById('sendMessage').onclick = function(){
-        var data = JSON.stringify({
-  "email": email1,
-  "password": password
-});
-
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("POST", "http://localhost:8080/api/auth/signin");
-xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("cache-control", "no-cache");
-xhr.setRequestHeader("postman-token", "4b7dd4ab-bcc3-1f38-ec7d-e1cbec9a14ce");
-
-xhr.send(data);
+    xhr.send(body);
+  
+    xhr.onload = () => alert(xhr.response);
     }
   </script>
   
