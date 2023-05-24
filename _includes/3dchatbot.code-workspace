@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../node-js-jwt-auth-mongodb"
+		},
+		{
+			"path": "../../gpt-j-api"
+		},
+		{
+			"path": "../../singuk"
+		}
+	],
+	"settings": {}
+}
