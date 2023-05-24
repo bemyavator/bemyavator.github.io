@@ -47,6 +47,8 @@ include:
  - _posts
 logo:
  - /media/logo/
+logosvg:
+ - /media/emersalogosvg.svg
 
 
 downloadlink: https://drive.google.com/uc?export=download&id=17l7di-fx1ERvu6XHM24Z1a6nu6fwZNIO
