@@ -36,22 +36,6 @@ var sample_json = {
             "group": "Sun"
         },
         {
-          "media": {
-            "url": "//twitter.com/Blavity/status/851872780949889024",
-            "caption": "Houston, performing on Good Morning America in 2009.",
-            "credit": "<a href='http://commons.wikimedia.org/wiki/File%3AFlickr_Whitney_Houston_performing_on_GMA_2009_4.jpg'>Asterio Tecson</a> via Wikimedia"
-          },
-          "start_date": {
-            "month": "2",
-            "day": "11",
-            "year": "2012"
-          },
-          "text": {
-            "headline": "Whitney Houston<br/> 1963-2012",
-            "text": "<p>Houston, 48, was discovered dead at the Beverly Hilton Hotel on  on Feb. 11, 2012. She is survived by her daughter, Bobbi Kristina Brown, and mother, Cissy Houston.</p>"
-          }
-        },
-        {
             "start_date": {
                 "month": "2",
                 "day": "4",
@@ -101,27 +85,11 @@ var timeline_json = {
         "start_date": {
           "month": "8",
           "day": "9",
-          "year": "1983"
+          "year": "1963"
         },
         "text": {
           "headline": "A Musical Heritage",
           "text": "<p>Born in New Jersey on August 9th, 1963, Houston grew up surrounded by the music business. Her mother is gospel singer Cissy Houston and her cousins are Dee Dee and Dionne Warwick.</p>"
-        }
-      },
-      {
-        "media": {
-          "url": "//twitter.com/Blavity/status/851872780949889024",
-          "caption": "Houston, performing on Good Morning America in 2009.",
-          "credit": "<a href='http://commons.wikimedia.org/wiki/File%3AFlickr_Whitney_Houston_performing_on_GMA_2009_4.jpg'>Asterio Tecson</a> via Wikimedia"
-        },
-        "start_date": {
-          "month": "2",
-          "day": "11",
-          "year": "2012"
-        },
-        "text": {
-          "headline": "Whitney Houston<br/> 1963-2012",
-          "text": "<p>Houston, 48, was discovered dead at the Beverly Hilton Hotel on  on Feb. 11, 2012. She is survived by her daughter, Bobbi Kristina Brown, and mother, Cissy Houston.</p>"
         }
       },
       {
