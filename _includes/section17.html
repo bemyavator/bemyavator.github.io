@@ -13,8 +13,8 @@
     <ul><li>"Public land 20x20 packed with Utility. "</li> </ul> </div>
     <form action="">
         <div>
-        <input class="inputnumber" type="number" style="width:80% !important" placeholder="Enter no of token" value="">
-        <button id="button1" class="cta purple" style="width:80% !important" target="" min="1" max="1" type="submit"><span>Mint</span></button>
+        <input class="inputnumber" type="number" style="width:80% !important" placeholder="Enter no of token" value=""  min="1" max="20">
+        <button id="button1" class="cta purple" style="width:80% !important" target="" type="submit"><span>Mint</span></button>
         </div>
     </form>
     </div>
@@ -934,7 +934,7 @@
         contract = new web3.eth.Contract(ABI, ADDRESS);
         if (contract){
        /* var memos = await contract.methods.getMemos().call()
-        .then(function(error, result) {
+        .then(function(error, result) { 
         if (!error){
         for (i = 0; i < result.length; i++){
         document.getElementById('get-memo').innerHTML = i;
