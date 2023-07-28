@@ -171,10 +171,23 @@ const contractABI = {% include contractabi.html %};
 async function mintNFT() {
   const accounts = await web3.eth.getAccounts();
   const from = accounts[0];
-
+  const cost = 0;
   // Instantiate a new Contract
   const contract = new web3.eth.Contract(contractABI, contractAddress);
 
+  const pretest = await contract.methods.betatest().call();
+  console.log(pretest);
+
+  const pretest1 = await contract.methods.ACpresale().call();
+  console.log(pretest1);
+  const price1 = await contract.methods.ACPrice2().call();
+  const price2 = await contract.methods.ACPrice2a().call();
+  const price3 = await contract.methods.ACPrice2b().call();
+  const price4 = await contract.methods.ACPrice2c().call();
+if (pretest == true || pretest1 == true){price4 = cost};
+if (pretest == true || pretest1 == false){price3 = cost};
+if (pretest == false || pretest1 == false){price1 = cost};
+if (pretest == false || pretest1 == true){price2 = cost};
   // Converts wei to Ether this currently is unused, 
   // but if an NFT requires payment, you can use this as the argument to "value"
  // const valueWei = web3.utils.toWei(""+test*200000000+"", "gwei");
@@ -185,8 +198,8 @@ async function mintNFT() {
     const test = document.getElementById("mintbuttonno").value;
     console.log(test);
     document.getElementById("mintbuttonno").value = test;
-    const valueWei = web3.utils.toWei(""+test*200000000+"", "gwei");
-    const result = await contract.methods.AC(from, test).send({ from: from, value: valueWei });
+    const valueWei = web3.utils.toWei(""+test*cost+"", "gwei");
+    const result = await contract.methods.mintAC(test).send({ from: from, value: valueWei });
     //const _totalSupply = await contract.methods.totalSupply().call();
     console.log("Minting result:", result);
 
@@ -215,6 +228,20 @@ async function mintNFT1() {
 
   // Instantiate a new Contract
   const contract = new web3.eth.Contract(contractABI, contractAddress);
+  const cost = 0;
+  const pretest = await contract.methods.betatest().call();
+  console.log(pretest);
+
+  const pretest1 = await contract.methods.ACEpresale().call();
+  console.log(pretest1);
+  const price1 = await contract.methods.ACPrice3().call();
+  const price2 = await contract.methods.ACPrice3a().call();
+  const price3 = await contract.methods.ACPrice3b().call();
+  const price4 = await contract.methods.ACPrice3c().call();
+  if (pretest == true || pretest1 == true){price4 = cost};
+  if (pretest == true || pretest1 == false){price3 = cost};
+  if (pretest == false || pretest1 == false){price1 = cost};
+  if (pretest == false || pretest1 == true){price2 = cost};
 
   // Converts wei to Ether this currently is unused, 
   // but if an NFT requires payment, you can use this as the argument to "value"
@@ -227,8 +254,8 @@ async function mintNFT1() {
     const test = document.getElementById("mintbuttonno1").value;
     console.log(test);
     document.getElementById("mintbuttonno1").value = test;
-    const valueWei = web3.utils.toWei(""+test*200000000+"", "gwei");
-    const result = await contract.methods.ACE(test).send({ from: from, value: valueWei });
+    const valueWei = web3.utils.toWei(""+test*cost+"", "gwei");
+    const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
     //const _totalSupply = await contract.methods.totalSupply().call();
     console.log("Minting result:", result);
 
@@ -263,7 +290,7 @@ async function mintNFT2() {
 
   // Converts wei to Ether this currently is unused, 
   // but if an NFT requires payment, you can use this as the argument to "value"
- // const valueWei = web3.utils.toWei(""+test*200000000+"", "gwei");
+ // const valueWei = web3.utils.toWei(""+test*cost+"", "gwei");
    
   try {
     // Interact with Smart Contract
