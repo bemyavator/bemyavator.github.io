@@ -189,7 +189,7 @@ if (pretesta == true && pretest1a == true){
     const test = document.getElementById("mintbuttonno").value;
     console.log(test);
     document.getElementById("mintbuttonno").value = test;
-    const valueWei = web3.utils.toWei(""+test*200000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
     const result = await contract.methods.mintAC(test).send({ from: from, value: valueWei });
 
     console.log("Minting result:", result);};
@@ -207,7 +207,7 @@ if (pretesta == false && pretest1a == false){
     const test = document.getElementById("mintbuttonno").value;
     console.log(test);
     document.getElementById("mintbuttonno").value = test;
-    const valueWei = web3.utils.toWei(""+test*200000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*200000000+"", "gwei");
     const result = await contract.methods.mintAC(test).send({ from: from, value: valueWei });
     //const _totalSupply = await contract.methods.totalSupply().call();
     console.log("Minting result:", result);};
@@ -216,7 +216,7 @@ if (pretesta == false && pretest1a == true){
     const test = document.getElementById("mintbuttonno").value;
     console.log(test);
     document.getElementById("mintbuttonno").value = test;
-    const valueWei = web3.utils.toWei(""+test*200000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*80000000+"", "gwei");
     const result = await contract.methods.mintAC(test).send({ from: from, value: valueWei });
     //const _totalSupply = await contract.methods.totalSupply().call();
     console.log("Minting result:", result);};
