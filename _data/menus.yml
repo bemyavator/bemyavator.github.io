@@ -1,6 +1,6 @@
 menuroot:
 - menuroot1:
-  name: Who are Emersa
+  name: About
   link: /indexintro.html#who
 - menuroot1:
   name: Road Map
