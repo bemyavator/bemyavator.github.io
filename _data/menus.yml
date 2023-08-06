@@ -1,16 +1,16 @@
 menuroot:
 - menuroot1:
   name: Who are Emersa
-  link: /#who
+  link: /indexintro.html#who
 - menuroot1:
   name: Road Map
   link: https://docs.google.com/document/d/1iaoqWEuOmQilFm4yEVASASLEZJT_78KB/edit?usp=sharing&ouid=105780024435462099389&rtpof=true&sd=true
 - menuroot1:
   name: Team
-  link: /#team
+  link: /indexintro.html#team
 - menuroot1:
   name: White Papers
-  link: /#whitepapers
+  link: /indexintro.html#whitepapers
 - menuroot1:
   name: Mint
   link: /mint/
