@@ -493,7 +493,7 @@ window.addEventListener('scroll', function (event) {
 }
 
 scrollStop(function () {
-	stopanimate();
+	
 console.log('Scrolling has stopped.');
 console.log(skeletonHelper.bones[18].rotation.x);
 console.log(skeletonHelper.bones[3].rotation.x);
@@ -657,7 +657,7 @@ e.target.responseText
 }
 
 playtrack.onclick = function playtrack1() {
-const image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+let image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
 const image1 = `{% include image2.html %}`;
 let xhr = new XMLHttpRequest();
 var userMessage = document.querySelector("#userInput").value;
