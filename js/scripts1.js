@@ -304,7 +304,7 @@ function createDownloadLink(blob) {
       let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+text99.transcript+'</div>'+image1+'</div>';
       document.querySelector('#body').innerHTML+= userHtml;
 	  let xhr = new XMLHttpRequest();
-      xhr.open(`GET`, `https://chatapi-vd80.onrender.com/test123/${text99.transcript}`);
+      xhr.open(`GET`, `{{ site.apilink1 }}${text99.transcript}`);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.send(`messageValue=${text99.transcript}`);
       xhr.onload = function () {
@@ -312,7 +312,7 @@ function createDownloadLink(blob) {
         var obj1q = JSON.stringify(this.responseText);
           let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2+'</div>'+'<div class="msg_cotainer">'+obj.traits.text[0].value+'</div>'+'</div>'
           document.querySelector('#body').innerHTML+= botHtml;
-          document.getElementById("audio1").src = `https://nodetts.onrender.com/?text=${obj.traits.text[0].value}`;
+          document.getElementById("audio1").src = `{{ site.apilink2 }}${obj.traits.text[0].value}`;
           var y = document.getElementById("myAudio"); 
           y.play(); 
 		  console.log(renderer.render( scene, camera ));
@@ -321,7 +321,7 @@ function createDownloadLink(blob) {
 	};
 	var fd=new FormData();
 	fd.append("file",blob, filename);
-	xhr.open("POST","https://pythonstt.onrender.com/read4",true);
+	xhr.open("POST","{{ site.apilink3 }}",true);
 	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xhr.setRequestHeader("Access-Control-Allow-Methods","PUT, GET, POST, DELETE, OPTIONS");
 	xhr.setRequestHeader("Access-Control-Allow-Headers","Special-Request-Header, Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -342,7 +342,7 @@ e.target.responseText
 		  };
 		  var fd=new FormData();
 		  fd.append("file",blob, filename);
-		  xhr.open("POST","https://pythonstt.onrender.com/read4",true);
+		  xhr.open("POST","{{ site.apilink3 }}",true);
 		  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 		  xhr.setRequestHeader("Access-Control-Allow-Methods","PUT, GET, POST, DELETE, OPTIONS");
 		  xhr.setRequestHeader("Access-Control-Allow-Headers","Special-Request-Header, Origin, X-Requested-With, Content-Type, Accept, Authorization");

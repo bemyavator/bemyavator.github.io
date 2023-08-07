@@ -27,7 +27,7 @@ loadSong(songs[songIndex]);
 // Update song details
 function loadSong(song) {
   title.innerText = song;
-  audio.src = `https://nodetts.onrender.com/?text=${song}`;
+  audio.src = `{{ site.apilink2 }}${song}`;
   cover.src = `images/${song}.jpg`;
 }
 

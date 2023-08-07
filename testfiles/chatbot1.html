@@ -40,7 +40,7 @@
         let userHtml = '<div class="userSection">'+'<div class="messages user-message">'+userMessage+'</div>'+
         '<div class="seperator"></div>'+'</div>'
         document.querySelector('#body').innerHTML+= userHtml;
-        xhr.open(`GET`, `https://chatapi-vd80.onrender.com/test123/${userMessage}`);
+        xhr.open(`GET`, `{{ site.apilink1 }}${userMessage}`);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(`messageValue=${userMessage}`);
         xhr.onload = function () {

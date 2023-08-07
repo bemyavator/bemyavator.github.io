@@ -193,7 +193,7 @@ if (runAnim) {
                 var userMessage = document.querySelector("#userInput").value;
                 let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
                 document.querySelector('#body').innerHTML+= userHtml;
-                xhr.open(`GET`, `https://chatapi-vd80.onrender.com/test123/${userMessage}`);
+                xhr.open(`GET`, `{{ site.apilink1 }}${userMessage}`);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.send(`messageValue=${userMessage}`);
                 xhr.onload = function () {
@@ -211,7 +211,7 @@ if (runAnim) {
                 camera.add( listener );
                 const sound = new THREE.Audio( listener );
                 const audioLoader = new THREE.AudioLoader();
-audioLoader.load( `https://nodetts.onrender.com/?text=${objecttext}`, function( buffer ) {
+audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
     //sound.start(0);
 	sound.setBuffer( buffer );
 	sound.setLoop( false );
