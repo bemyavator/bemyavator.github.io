@@ -24,14 +24,14 @@ menuroot:
           description : This is about The White Papers
           link: /indexintro.html#whitepapers
 - menuroot1:
-  name: Mint
-  link: /mint/
-- menuroot1:
   name: Login
   link: /login/
 - menuroot1:
   name: Subscribe
   link: /subscribe/
+- menuroot1:
+  name: Mint
+  link: /mint/
 menutest:
 - menuroot2:
   name: Platform
