@@ -1,7 +1,6 @@
 menuroot:
 - menuroot2:
   name: Emersa
-  link: /platform/
   submenuitems:
     - submenus: 
       name: All About Emersa
