@@ -9,19 +9,19 @@ menuroot:
       submenuitems:
         - submenuitem: 
           name: About
-          description : Welcome to Native <br>and Open XDR
+          description : Learn All About Emersa
           link: /indexintro.html#who
         - submenuitem:
           name: Road Map
-          description : One Home for All<br> Security Data
+          description : This is our Road Map
           link: /platform/
         - submenuitem: 
           name: Team
-          description : The Singularity XDR Difference
+          description : Find Out About The Team
           link: /indexintro.html#team
         - submenuitem:
           name: White Papers
-          description : One-Click Integrations to Unlock the Power of XDR
+          description : This is about The White Papers
           link: /indexintro.html#whitepapers
 - menuroot1:
   name: About
