@@ -1,0 +1,159 @@
+<div style="margin: auto;">
+	<div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+	  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	</div>
+	<div class="alert alert-danger alert-dismissible" id="error" style="display:none;">
+	  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	</div>
+	<button type="button" class="btn btn-success btn-sm" id="register">Register</button> <button type="button" class="btn btn-success btn-sm" id="login">Login</button>
+	
+	<form id="register_form" name="form1" class="mktoForm mktoHasWidth mktoLayoutLeft bf_form_init" method="post">
+		<div class="center">
+            <div id="social-test">
+            <ul class="social">
+              <li><a href="https://facebook.com/colorlib"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href="https://twitter.com/colorlib"><i class="fa fa-twitter" aria-hidden="true"></a></i></li>
+              <li><a href="https://instagram.com/colorlib"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.youtube.com/c/Colorlib"><i class="fa fa-youtube" aria-hidden="true"></a></i></li>
+              <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+              <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></a></i></li>
+              <li><a href="https://github.com/puikinsh"><i class="fa fa-github" aria-hidden="true"></a></i></li>
+            </li>
+            </ul>
+          </div>
+          </div>
+	</form>
+	<form id="login_form" name="form1" method="post" style="display:none;">
+		
+		<div class="form-group">
+			<input type="text" class="form-control" id="username1" placeholder="username" name="username"><br />
+            <label for="pwd">Username:</label>
+        </div>
+		<div class="form-group">
+			<input type="password" class="form-control" id="password1" placeholder="Password" name="password"><br />
+            <label for="pwd">Password:</label>
+        </div>
+		<input type="button" name="save" class="btn btn-primary" value="Login" id="butlogin">
+		<p id="messagebox" class="message box">
+			Reply from Server will be here
+		  </p>
+	</form>
+	
+</div>
+
+<script>
+$(document).ready(function() {
+	$('#login').on('click', function() {
+		$("#login_form").show();
+		$("#register_form").hide();
+	});
+	$('#register').on('click', function() {
+		$("#register_form").show();
+		$("#login_form").hide();
+	});
+	$('#butsave').on('click', function() {
+		$("#butsave").attr("disabled", "disabled");
+		var username = $('#username').val();
+		var email = $('#email').val();
+		var phone = $('#phone').val();
+		var city = $('#city').val();
+		var password = $('#password').val();
+		if(username!="" && email!="" && phone!="" && password!="" ){
+	
+			  //  const userName = document.getElementById('name').value;
+        // const url = 'https://jsonplaceholder.typicode.com/posts';
+        // Add your code below this line
+        let url = 'https://membershipapi.onrender.com/api/auth/signup'
+            let req = new XMLHttpRequest();
+
+            console.log(req);
+            req.open('POST', url, true);
+            req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            req.onreadystatechange = () =>{
+                if(req.readyState === 4 && req.status === 201){
+                    
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                }
+                if(req.status === 200){
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                    document.getElementById("messagebox1").innerHTML = object.message;
+            }
+            }
+            var number = {
+           email: document.getElementById('email').value,
+           username: document.getElementById('username').value, 
+           password: document.getElementById('password').value
+         }
+            let body = JSON.stringify(number);
+            req.send(body);
+            let dude = req.responseText;
+            console.log(dude);
+          //  let jsonResponse = req.response;
+           // document.getElementById("messagebox").innerHTML = dude.responseText;
+        // Add your code above this line
+
+		}
+		else{
+			alert('Please fill all the field !');
+		}
+	});
+	$('#butlogin').on('click', function() {
+		var email = $('#email_log').val();
+		var password = $('#password_log').val();
+		if(email!="" && password!="" ){
+			
+
+		  //  const userName = document.getElementById('name').value;
+        // const url = 'https://jsonplaceholder.typicode.com/posts';
+        // Add your code below this line
+        let url = 'https://membershipapi.onrender.com/api/auth/signin'
+            let req = new XMLHttpRequest();
+
+            console.log(req);
+            req.open('POST', url, true);
+            req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            req.onreadystatechange = () =>{
+                if(req.readyState === 4 && req.status === 201){
+                    
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                }
+                if(req.status === 200){
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                    document.getElementById("messagebox").innerHTML = object.message;
+					function setCookie(cName, cValue, expDays) {
+        let date = new Date();
+        date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+}
+setCookie('accessToken', object.accessToken, 30);
+            } if(req.status === 401){
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                    document.getElementById("messagebox").innerHTML = "Invalid username or password";
+            }
+            }
+            var number = {
+           username: document.getElementById('username1').value,
+          // username: document.getElementById('username').value, 
+           password: document.getElementById('password1').value
+         }
+            let body = JSON.stringify(number);
+            req.send(body);
+            let dude = req.responseText;
+            console.log(dude);
+          //  let jsonResponse = req.response;
+           // document.getElementById("messagebox").innerHTML = dude.responseText;
+        // Add your code above this line
+			
+			}
+		else{
+			alert('Please fill all the field !');
+		}
+	});
+});
+</script>
