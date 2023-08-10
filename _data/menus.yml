@@ -14,7 +14,7 @@ menuroot:
         - submenuitem:
           name: Road Map
           description : This is our Road Map
-          link: /platform/
+          link: https://docs.google.com/document/d/1iaoqWEuOmQilFm4yEVASASLEZJT_78KB/edit?usp=sharing&ouid=105780024435462099389&rtpof=true&sd=true
         - submenuitem: 
           name: Team
           description : Find Out About The Team
@@ -23,18 +23,6 @@ menuroot:
           name: White Papers
           description : This is about The White Papers
           link: /indexintro.html#whitepapers
-- menuroot1:
-  name: About
-  link: /indexintro.html#who
-- menuroot1:
-  name: Road Map
-  link: https://docs.google.com/document/d/1iaoqWEuOmQilFm4yEVASASLEZJT_78KB/edit?usp=sharing&ouid=105780024435462099389&rtpof=true&sd=true
-- menuroot1:
-  name: Team
-  link: /indexintro.html#team
-- menuroot1:
-  name: White Papers
-  link: /indexintro.html#whitepapers
 - menuroot1:
   name: Mint
   link: /mint/
