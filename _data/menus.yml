@@ -20,11 +20,11 @@ menuroot:
         - submenuitem: 
           name: Team
           description : The Singularity XDR Difference
-          link: /platform/
+          link: /indexintro.html#team
         - submenuitem:
           name: White Papers
           description : One-Click Integrations to Unlock the Power of XDR
-          link: /platform/
+          link: /indexintro.html#whitepapers
 - menuroot1:
   name: About
   link: /indexintro.html#who
