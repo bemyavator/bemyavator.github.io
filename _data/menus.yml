@@ -26,6 +26,12 @@ menuroot:
 - menuroot1:
   name: Mint
   link: /mint/
+- menuroot1:
+  name: Login
+  link: /login/
+- menuroot1:
+  name: Subscribe
+  link: /subscribe/
 menutest:
 - menuroot2:
   name: Platform
