@@ -1,4 +1,12 @@
 menuroot:
+- menuroot2:
+  name: About
+  link: /platform/
+  submenuitems:
+    - submenuitem:
+      name: dude
+      description : Welcome to Native <br>and Open XDR
+      link: /platform/
 - menuroot1:
   name: About
   link: /indexintro.html#who
