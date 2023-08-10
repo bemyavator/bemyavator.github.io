@@ -3,7 +3,7 @@ menuroot:
   name: About
   link: /platform/
   submenuitems:
-    - submenuitem:
+    - submenuitem: 
       name: dude
       description : Welcome to Native <br>and Open XDR
       link: /platform/
