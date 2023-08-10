@@ -6,7 +6,6 @@ menuroot:
       name: All About Emersa
       column: cols-1
       line: twoline
-      link: /platform/
       submenuitems:
         - submenuitem: 
           name: About
