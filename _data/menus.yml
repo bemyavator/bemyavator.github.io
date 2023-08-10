@@ -1,12 +1,30 @@
 menuroot:
 - menuroot2:
-  name: About
+  name: Emersa
   link: /platform/
   submenuitems:
-    - submenuitem: 
-      name: dude
-      description : Welcome to Native <br>and Open XDR
+    - submenus: 
+      name: All About Emersa
+      column: cols-1
+      line: twoline
       link: /platform/
+      submenuitems:
+        - submenuitem: 
+          name: About
+          description : Welcome to Native <br>and Open XDR
+          link: /indexintro.html#who
+        - submenuitem:
+          name: Road Map
+          description : One Home for All<br> Security Data
+          link: /platform/
+        - submenuitem: 
+          name: Team
+          description : The Singularity XDR Difference
+          link: /platform/
+        - submenuitem:
+          name: White Papers
+          description : One-Click Integrations to Unlock the Power of XDR
+          link: /platform/
 - menuroot1:
   name: About
   link: /indexintro.html#who
