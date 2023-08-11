@@ -7,7 +7,7 @@
 	</div>
 	<button type="button" class="btn btn-success btn-sm" id="register">Register</button> <button type="button" class="btn btn-success btn-sm" id="login">Login</button>
 	
-		<div class="center" style="display: table;width: 100%; height: 100vh;">
+		<div id="login_social" class="center" style="display: table;width: 100%; height: 100vh;">
             <div id="social-test" style="display: table-cell; vertical-align: middle; text-align: center; font-size: 30px;">
             <ul class="social" style="padding-left: 0px;">
               <li style="display: inline-block;"><a onclick="trySampleRequest();" href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
@@ -46,6 +46,7 @@ $(document).ready(function() {
 	$('#login').on('click', function() {
 		$("#login_form").show();
 		$("#register_form").hide();
+    $("#login_social").hide();
 	});
 	$('#register').on('click', function() {
 		$("#register_form").show();
