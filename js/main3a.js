@@ -20,7 +20,7 @@ async function checkMetaMaskAvailability() {
 // Event listener for MetaMask button
 
 
-document.getElementById("loginbutton1").addEventListener("click", async () => {
+document.getElementById("loginbutton5").addEventListener("click", async () => {
   const metaMaskAvailable = await checkMetaMaskAvailability();
   if (metaMaskAvailable) {
     await ConnectWallet();
