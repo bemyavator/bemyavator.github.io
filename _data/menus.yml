@@ -24,9 +24,6 @@ menuroot:
           description : This is about The White Papers
           link: /indexintro.html#whitepapers
 - menuroot1:
-  name: Login
-  link: /login/
-- menuroot1:
   name: Subscribe
   link: /subscribe/
 - menuroot1:
