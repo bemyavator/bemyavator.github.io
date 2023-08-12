@@ -708,8 +708,8 @@ color: #888;
 </div>
 <div id="body" style="width:100%;height:331px" class="card-body msg_card_body">
 	<script>
-        const image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
-const image1 = `<div class="img_cont_msg">
+        const image2a = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+const image1a = `<div class="img_cont_msg">
 <img src="/media/dude3.jpeg" class="rounded-circle user_img_msg">
     </div>`;
 </script>
@@ -789,7 +789,7 @@ slider.oninput=function(){
 {
 "imports": {
 "three": "../build/three.module.js",
-"three/addons/": "./jsm/"
+"three/addons/": "/jsm/"
 }
 }
 </script>
@@ -919,7 +919,7 @@ scene.add( grid );
 // model
 
 const loader = new FBXLoader();
-loader.load( 'assets/glb/dude45d.fbx', function ( object ) {
+loader.load( '/assets/glb/dude45d.fbx', function ( object ) {
 
 mixer = new THREE.AnimationMixer( object );
 
@@ -1240,8 +1240,8 @@ window.addEventListener('scroll', function (event) {
 scrollStop(function () {
 	
 console.log('Scrolling has stopped.');
-console.log(skeletonHelper.bones[18].rotation.x);
-console.log(skeletonHelper.bones[3].rotation.x);
+//console.log(skeletonHelper.bones[18].rotation.x);
+//console.log(skeletonHelper.bones[3].rotation.x);
 //skeletonHelper.bones[18].rotation.x = -3.0006409159284159933;
 //skeletonHelper.bones[3].rotation.x = 3.0006409159284159933;
 //skeletonHelper.bones[74].rotation.y = 0;
@@ -1408,7 +1408,7 @@ const image1a = `<div class="img_cont_msg">
             </div>`;
 let xhr = new XMLHttpRequest();
 var userMessage = document.querySelector("#userInput").value;
-let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
+let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1a+'</div>'
 document.querySelector('#body').innerHTML+= userHtml;
 xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/test123/${userMessage}`);
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
