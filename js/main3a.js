@@ -271,7 +271,7 @@ async function mintNFT1() {
   const price2 = await contract.methods.ACPrice3a().call();
   const price3 = await contract.methods.ACPrice3b().call();
   const price4 = await contract.methods.ACPrice3c().call();
-  if (pretest == true || pretest1 == true){const cost = price4};
+  if (pretest == true || pretest1 == true){price4 = cost};
   if (pretest == true || pretest1 == false){price3 = cost};
   if (pretest == false || pretest1 == false){price1 = cost};
   if (pretest == false || pretest1 == true){price2 = cost};
