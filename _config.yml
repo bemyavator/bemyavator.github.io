@@ -37,7 +37,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 contractaddress: >- 
- 0xe3e3504670d297146f8aEEAAA18657F3dB22Db20
+ 0x72FA7f14D5B2aff852b013451Bc823A85ABFC66D
 company: Emersa
 # Build settings
 theme: minima
