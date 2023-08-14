@@ -192,3 +192,48 @@ setCookie('accessToken', object.accessToken, 30);
 		}
 	});
 });
+
+let account = null;
+let accessToken = null;
+const connect1 = async () => {
+  if (window.ethereum) {
+    await window.ethereum.send('eth_requestAccounts')
+    window.w3 = new Web3(window.ethereum)
+    var accounts = await w3.eth.getAccounts()
+    account = accounts[0];
+
+    accessToken = await authenticate()
+    
+    let opts = {
+      method: 'GET',
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }
+
+    let res = await fetch(`http:localhost:8080/web3/secret`, opts)
+    alert(await res.text())
+  }
+}
+
+const authenticate = async () => {
+  let res = await fetch(`http:localhost:8080/web3/nonce?address=${account}`)
+  let resBody = await res.json()
+
+  let signature = await w3.eth.personal.sign(resBody.message, account)
+
+  let opts = {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': `Bearer ${resBody.tempToken}`
+    }
+  }
+
+  res = await fetch(`http:localhost:8080/web3/verify?signature=${signature}`, opts)
+  resBody = await res.json()
+
+  console.log(resBody)
+  return resBody.token
+}
