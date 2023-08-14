@@ -275,7 +275,7 @@ async function mintNFT1() {
     const test = document.getElementById("mintbuttonno1").value;
     console.log(test);
     document.getElementById("mintbuttonno1").value = test;
-    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*1000000+"", "gwei");
     const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
 
     console.log("Minting result:", result);
@@ -284,7 +284,7 @@ async function mintNFT1() {
     const test = document.getElementById("mintbuttonno1").value;
     console.log(test);
     document.getElementById("mintbuttonno1").value = test;
-    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*2000000+"", "gwei");
     const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
 
     console.log("Minting result:", result);
@@ -293,7 +293,7 @@ async function mintNFT1() {
     const test = document.getElementById("mintbuttonno1").value;
     console.log(test);
     document.getElementById("mintbuttonno1").value = test;
-    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*2000000000000000+"", "gwei");
     const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
 
     console.log("Minting result:", result);
@@ -302,7 +302,7 @@ async function mintNFT1() {
     const test = document.getElementById("mintbuttonno1").value;
     console.log(test);
     document.getElementById("mintbuttonno1").value = test;
-    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const valueWei = web3.utils.toWei(""+test*1000000000000000+"", "gwei");
     const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
 
     console.log("Minting result:", result);
