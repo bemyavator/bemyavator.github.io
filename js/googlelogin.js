@@ -15,6 +15,10 @@ if (Object.keys(params).length > 0) {
   }
 }
 
+
+function trySampleRequest1(){
+  window.open("https://orca-app-2-6vedu.ondigitalocean.app/auth/google");
+}
 // If there's an access token, try an API request.
 // Otherwise, start OAuth 2.0 flow.
 function trySampleRequest() {
