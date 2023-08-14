@@ -271,10 +271,42 @@ async function mintNFT1() {
   const price2 = await contract.methods.ACPrice3a().call();
   const price3 = await contract.methods.ACPrice3b().call();
   const price4 = await contract.methods.ACPrice3c().call();
-  if (pretest == true && pretest1 == true){price4 = cost};
-  if (pretest == true && pretest1 == false){price3 = cost};
-  if (pretest == false && pretest1 == false){price1 = cost};
-  if (pretest == false && pretest1 == true){price2 = cost};
+  if (pretest == true && pretest1 == true){
+    const test = document.getElementById("mintbuttonno1").value;
+    console.log(test);
+    document.getElementById("mintbuttonno1").value = test;
+    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
+
+    console.log("Minting result:", result);
+  };
+  if (pretest == true && pretest1 == false){
+    const test = document.getElementById("mintbuttonno1").value;
+    console.log(test);
+    document.getElementById("mintbuttonno1").value = test;
+    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
+
+    console.log("Minting result:", result);
+  };
+  if (pretest == false && pretest1 == false){
+    const test = document.getElementById("mintbuttonno1").value;
+    console.log(test);
+    document.getElementById("mintbuttonno1").value = test;
+    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
+
+    console.log("Minting result:", result);
+  };
+  if (pretest == false && pretest1 == true){
+    const test = document.getElementById("mintbuttonno1").value;
+    console.log(test);
+    document.getElementById("mintbuttonno1").value = test;
+    const valueWei = web3.utils.toWei(""+test*80000+"", "gwei");
+    const result = await contract.methods.mintACE(test).send({ from: from, value: valueWei });
+
+    console.log("Minting result:", result);
+  };
 
   // Converts wei to Ether this currently is unused, 
   // but if an NFT requires payment, you can use this as the argument to "value"
