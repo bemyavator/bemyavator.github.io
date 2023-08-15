@@ -366,7 +366,7 @@ pauseButton.addEventListener("click", pauseRecording);
 
 function startRecording() {
 	console.log("recordButton clicked");
-	document.getElementById("stopButton").removeAttribute("style");
+	document.getElementById("stopButton").style.display = 'block';
 	document.getElementById('recordButton').style.display = 'none';
 	/*
 		Simple constraints object, for more advanced audio features see
@@ -379,7 +379,7 @@ function startRecording() {
     	Disable the record button until we get a success or fail from getUserMedia() 
 	*/
 
-	recordButton.disabled = true;
+	recordButton.disabled = false;
 	stopButton.disabled = false;
 	pauseButton.disabled = false
 
@@ -422,7 +422,7 @@ function startRecording() {
 	}).catch(function(err) {
 	  	//enable the record button if getUserMedia() fails
     	recordButton.disabled = false;
-    	stopButton.disabled = true;
+    	stopButton.disabled = false;
     	pauseButton.disabled = true
 	});
 }
@@ -525,10 +525,10 @@ function stopRecording() {
 	console.log("stopButton clicked");
 	//console.log(window.e.head);;
 	console.log(window);
-	document.getElementById("recordButton").removeAttribute("style");
+	document.getElementById("recordButton").style.display = 'block';
 	document.getElementById('stopButton').style.display = 'none';
 	//disable the stop button, enable the record too allow for new recordings
-	stopButton.disabled = true;
+	stopButton.disabled = false;
 	recordButton.disabled = false;
 	pauseButton.disabled = true;
 
