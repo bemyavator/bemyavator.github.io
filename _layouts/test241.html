@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% include head8.html %}
+{% include head9.html %}
 <title>three.js webgl - additive animation - skinning</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0">
@@ -29,7 +29,7 @@ color: #888;
 <div id="container"></div>
 <div id="info">
 
-{% include header4a.html %}
+{% include header4c.html %}
 </div>
 </head>
 
@@ -657,8 +657,8 @@ e.target.responseText
 }
 
 playtrack.onclick = function playtrack1() {
-let image2a = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
-const image1a = `{% include image2.html %}`;
+let image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+const image1 = `{% include image2.html %}`;
 let xhr = new XMLHttpRequest();
 var userMessage = document.querySelector("#userInput").value;
 let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
