@@ -15,7 +15,7 @@
     </span>
     </button>
     <div class="search-form">
-    <form autocomplete="off" method="get" action="https://www.sentinelone.com">
+    <form autocomplete="off" method="get" action="https://emersa.io">
     <fieldset>
     <input type="search" name="s" placeholder="Search ..." value="" />
     <button class="search" type="submit">
@@ -120,8 +120,8 @@
     <div class="messager1">
       <div id="body" style="width:1%;height:1%x;display: none;" class="card-body msg_card_body">
         <script>
-              const image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
-      const image1 = `<div class="img_cont_msg">
+              const image2a = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
+      const image1a = `<div class="img_cont_msg">
       <img src="/media/dude3.jpeg" class="rounded-circle user_img_msg">
           </div>`;
       </script>
@@ -140,12 +140,16 @@
       <div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">hi</div><div class="img_cont_msg">
           <img src="/media/dude3.jpeg" class="rounded-circle user_img_msg">
                   </div></div><div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="/media/d1.jpg" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">hello how can i help you</div></div></div>
-      <div style="width: 100%;">
-      <button id="recordButton" style="height: 68px;color: black;width: 5%;"><i class="fas fa-microphone"></i></button>
-      <button id="stopButton" style="color: rgb(255, 0, 0);display: none;"><i class="fas fa-microphone"></i></button>
-      <textarea id="userInput" class="chatbox2" style="width: 85%; height: 68px;"></textarea>
-<button style="height: 68px;color: black;width: 5%;" id="playtrack"><i class="fas fa-location-arrow"></i></button>
-      </div>
+                  <div class="input-group" style="align-items: center; justify-content: center;">
+                    <div style="display: none;" class="input-group-append">
+                    <span style="display: none;" id="pauseButton" class="input-group-text attach_btn"><i class="fa fa-microphone-slash" aria-hidden="true"></i></span>
+                    
+                    </div>
+                    <button id="recordButton" style="height: 100px;color: black;"><i class="fas fa-microphone"></i></button>
+                    <button id="stopButton" style="height: 100px;color: rgb(255, 0, 0);display: none;"><i class="fas fa-microphone"></i></button>
+                    <textarea style="width: 70%;/* margin-right: 20px; */height: 130px;" name="" id="userInput" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                    <button style="height: 100px;color: black;" id="playtrack"><i class="fas fa-location-arrow"></i></button>
+                    </div>
       <div onclick="appear()" style="display: none; text-align: right">
       <span class="circle_icon">
         <img src="/media/messenger1.png">

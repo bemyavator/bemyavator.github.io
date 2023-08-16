@@ -18,7 +18,7 @@
                  <!-- {% assign amount2 = amount2 | plus:1 %}{{ amount2 }} -->
                 <ul class="submenu {{submenu.line}} {{submenu.column}}">
                     <li class="menu-item {{submenu.line}}{% if submenuitem.icon %}icon{% endif %} {{submenu.column}} active">
-                        <a href="/platform/" target="">
+                        <a href="{{ submenuitem.link }}" target="">
                             {% if submenuitem.icon %} <div class="iconbox" style="background-image:url( {{submenuitem.icon}} )"></div>{% endif %}
                                 <div class="labels">
                                     <span class="title"><strong>{{ submenuitem.name }}</strong></span>
