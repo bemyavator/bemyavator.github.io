@@ -653,7 +653,7 @@ color: #888;
                     <span style="display: none;" id="pauseButton" class="input-group-text attach_btn"><i class="fa fa-microphone-slash" aria-hidden="true"></i></span>
                     
                     </div>
-                    <input type="button" id="search-speech"  class="record" style="height: 100px;color: black; background: url("https://api.iconify.design/ic-baseline-face.svg?height=24") center no-repeat; disabled/>
+                    <input type="button" id="search-speech" style="width:30px; height: 100px;color: black; background: url('https://api.iconify.design/ph/microphone-fill.svg?height=24') center no-repeat; -webkit-appearance: button;cursor: pointer;" disabled/>
                     
                     
                     <button class="record" id="recordButton" style="display:none ;height: 100px;color: black;"><i class="fas fa-microphone"></i></button>
@@ -868,14 +868,19 @@ xhr.onload = () => {
   start : () => {
     voice.recog.start();
     voice.sbtn.onclick = voice.stop;
-    voice.sbtn.value = "Speak Now Or Click Again To Cancel";
+    const sample = document.getElementById("search-speech");
+    sample.style.background = `url('https://api.iconify.design/ph/microphone-fill.svg?color=red&height=24') center no-repeat`; 
+    voice.sbtn.value = "";
   },
  
   // (C) STOP/CANCEL SPEECH RECOGNITION
   stop : () => {
     voice.recog.stop();
     voice.sbtn.onclick = voice.start;
-    voice.sbtn.value = "Press To Speak";
+    const sample = document.getElementById("search-speech");
+    sample.style.background = `url('https://api.iconify.design/ph/microphone-fill.svg?color=black&height=24') center no-repeat`; 
+    
+    voice.sbtn.value = "";
   }
 };
 window.addEventListener("DOMContentLoaded", voice.init);

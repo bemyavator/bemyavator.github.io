@@ -390,7 +390,7 @@ var voice = {
       voice.recog.interimResults = false;
  
       // (A4) POPUPLATE SEARCH FIELD ON SPEECH RECOGNITION
-	  voice.recog.onresult = evt => {
+      voice.recog.onresult = evt => {
         let said = evt.results[0][0].transcript.toLowerCase();
         voice.sfield.value = said;
         
@@ -451,14 +451,19 @@ xhr.onload = () => {
   start : () => {
     voice.recog.start();
     voice.sbtn.onclick = voice.stop;
-    voice.sbtn.value = "Speak Now Or Click Again To Cancel";
+    const sample = document.getElementById("search-speech");
+    sample.style.background = `url('https://api.iconify.design/ph/microphone-fill.svg?color=red&height=24') center no-repeat`; 
+    voice.sbtn.value = "";
   },
  
   // (C) STOP/CANCEL SPEECH RECOGNITION
   stop : () => {
     voice.recog.stop();
     voice.sbtn.onclick = voice.start;
-    voice.sbtn.value = "Press To Speak";
+    const sample = document.getElementById("search-speech");
+    sample.style.background = `url('https://api.iconify.design/ph/microphone-fill.svg?color=black&height=24') center no-repeat`; 
+    
+    voice.sbtn.value = "";
   }
 };
 window.addEventListener("DOMContentLoaded", voice.init);
