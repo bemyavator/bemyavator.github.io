@@ -409,7 +409,10 @@ xhr.onload = () => {
   //  console.log(xhr.response.traits.text[0].value);
     var obj = xhr.response;
 		console.log(JSON.stringify(obj.traits));
-		var objlength = JSON.stringify(obj.traits);
+        var objlength = JSON.stringify(obj.traits);
+        if (obj.filter(company => company.Name === 'Magenic').length ) {
+  console.log('I contain Magenic');
+}
         var obj1q = JSON.stringify(xhr.response);
         if (objlength.length < 3) {
 		var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
