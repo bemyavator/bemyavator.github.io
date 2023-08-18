@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>CodePen - React Daily UI #006: User Profile</title>
+
+    <link rel="canonical" href="https://codepen.io/jakub_antolak/pen/vyEGQb">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+  
+<style>
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,700");
+* {
+  font-family: "Oswald";
+  transition: 100ms all ease-in-out;
+  box-sizing: border-box;
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.card {
+  width: 100%;
+}
+.card:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 60vh;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/435311/photo__mountains.jpg") no-repeat center;
+  filter: saturate(35%);
+  background-size: cover;
+}
+
+.card-header {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  top: -75px;
+  flex-direction: column;
+}
+@media (min-width: 601px) {
+  .card-header {
+    max-width: 960px;
+    flex-direction: row;
+  }
+}
+
+.card-main {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  padding: 20px 10px;
+  flex-direction: column;
+}
+@media (min-width: 601px) {
+  .card-main {
+    width: 100%;
+    max-width: 960px;
+    flex-direction: row;
+    position: relative;
+    top: -50px;
+    padding: 10px 30px;
+  }
+}
+
+.hello {
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 600px) {
+  .hello {
+    margin-left: 5%;
+  }
+}
+
+img {
+  border-radius: 50%;
+  width: 150px;
+  height: auto;
+}
+
+.heading-box {
+  width: 100%;
+  min-width: 270px;
+  padding-left: 2%;
+}
+@media (min-width: 601px) {
+  .heading-box {
+    padding-left: 10%;
+  }
+}
+.heading-box h1 {
+  font-size: 3em;
+  top: -50px;
+  margin: 0;
+  margin-bottom: 5px;
+  color: black;
+}
+.heading-box h3 {
+  font-weight: 2em;
+  color: #666666;
+  top: -30px;
+  font-weight: normal;
+  margin: 0;
+  margin-top: 5%;
+}
+.heading-box h3 span {
+  color: #999999;
+  margin-left: 2%;
+}
+
+.button-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+  flex-direction: row;
+}
+@media (min-width: 601px) {
+  .button-box {
+    width: 30%;
+    justify-content: flex-end;
+    padding-right: 5%;
+    padding-top: 0;
+  }
+}
+.button-box a {
+  display: block;
+  background-color: white;
+  border-radius: 50%;
+}
+.button-box i {
+  border-radius: 50%;
+  font-size: 54px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.activity {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 10px 0;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 4px;
+  margin: 5px;
+  width: 100%;
+}
+.activity * {
+  display: block;
+}
+@media (min-width: 601px) {
+  .activity {
+    flex-direction: row;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+  }
+  .activity * {
+    display: inline;
+    margin: 0 auto;
+  }
+}
+.activity:hover {
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+}
+.activity .activity-name {
+  text-transform: uppercase;
+}
+@media (min-width: 601px) {
+  .activity .activity-name {
+    margin: 0;
+  }
+}
+.activity .index {
+  width: 30px;
+}
+.activity i, .activity span {
+  font-size: 24px;
+  margin: 10px 0;
+}
+@media (min-width: 601px) {
+  .activity i, .activity span {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@-webkit-keyframes spinBack {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes spinBack {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div id="app"></div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js'></script>
+      <script id="rendered-js" >
+const Card_component = props => {
+  return (
+    React.createElement("div", { className: "card" }, 
+    React.createElement("header", { className: "card-header" }, 
+    React.createElement("div", { className: "hello" }, 
+    React.createElement("img", { src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/435311/React--daily-ui-006.jpg", alt: "" }), 
+    React.createElement("div", { className: "heading-box" }, 
+    React.createElement("h1", null, "John Doe"), 
+    React.createElement("h3", null, "Photographer, ", React.createElement("span", null, React.createElement("i", { className: "material-icons" }, "location_city"), " Warsaw, PL")))), 
+
+
+    React.createElement("div", { className: "button-box" }, 
+    React.createElement("a", { className: "follow-btn", href: "#" }, React.createElement("i", { className: "material-icons", style: props.btnStyle, onClick: props.follow }, props.icon)))), 
+
+
+    React.createElement("main", { className: "card-main" }, 
+    React.createElement("div", { className: "activity" }, 
+    React.createElement("i", { className: "material-icons" }, "group"), 
+    React.createElement("span", { className: "activity-name" }, "Followers"), 
+    React.createElement("span", { className: "index" }, props.friends)), 
+
+    React.createElement("div", { className: "activity" }, 
+    React.createElement("i", { className: "material-icons" }, "access_time"), 
+    React.createElement("span", { className: "activity-name" }, "Activity"), 
+    React.createElement("span", { className: "index" }, "225")), 
+
+    React.createElement("div", { className: "activity" }, 
+    React.createElement("i", { className: "material-icons" }, "mode_comment"), 
+    React.createElement("span", { className: "activity-name" }, "Posts"), 
+    React.createElement("span", { className: "index" }, "146")))));
+
+
+
+
+};
+
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: 10,
+      icon: 'add_circle',
+      text: 'Follow',
+      btnStyle: {
+        borderRadius: '50%',
+        color: 'limegreen',
+        cursor: 'pointer' } };
+
+
+  }
+
+  follow(e) {
+    e.preventDefault();
+    let currentIcon = this.state.icon;
+    let currentText = this.state.text;
+    let currentFriends = this.state.friends;
+    if (currentIcon === 'add_circle' && currentText === 'Follow')
+    this.setState({ friends: currentFriends + 1, icon: 'cancel', text: 'Unfollow', btnStyle: {
+        color: 'maroon', cursor: 'normal', animation: 'spin 200ms ease-in-out' } });else
+
+
+    this.setState({ friends: currentFriends - 1, icon: 'add_circle', text: 'Follow', btnStyle: {
+        color: 'limegreen', cursor: 'pointer', animation: 'spinBack 200ms ease-in-out' } });
+
+  }
+
+  render() {
+    return (
+      React.createElement(Card_component, {
+        btnStyle: this.state.btnStyle,
+        icon: this.state.icon,
+        text: this.state.text,
+        follow: this.follow.bind(this),
+        friends: this.state.friends }));
+
+
+  }}
+
+
+ReactDOM.render( React.createElement(Card, null), document.getElementById('app'));
+
+    </script>
+
+  
+</body>
+
+</html>
