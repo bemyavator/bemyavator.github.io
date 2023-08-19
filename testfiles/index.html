@@ -824,16 +824,22 @@ xhr.onload = () => {
     console.log(xhr.response);
   //  console.log(xhr.response.traits.text[0].value);
     var obj = xhr.response;
-		console.log(JSON.stringify(obj.traits));
-        var objlength = JSON.stringify(obj.traits);
-        if (obj.filter(company => company.Name === 'Magenic').length ) {
+		//console.log(JSON.stringify(obj.traits));
+    //    var objlength = JSON.stringify(obj.traits);
+    //  var obj = JSON.parse(this.responseText);
+console.log(obj);
+console.log(obj.textList);
+//console.log(JSON.stringify(obj.traits));
+var objlength = obj.textList;
+var obj1q = obj.textList;
+    /*    if (obj.filter(company => company.Name === 'Magenic').length ) {
   console.log('I contain Magenic');
-}
+}*/
         var obj1q = JSON.stringify(xhr.response);
-        if (objlength.length < 3) {
+        if (objlength.length < 1) {
 		var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
 		console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
-        }else { var objecttext = obj.traits.text[0].value};
+        }else { var objecttext = obj.textList};
         const listener = new THREE.AudioListener();
 		camera.add( listener );
 		const sound = new THREE.Audio( listener );

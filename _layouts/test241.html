@@ -400,7 +400,7 @@ var voice = {
         console.log(said);
         
         const xhr = new XMLHttpRequest();
-xhr.open("GET", `https://seal-app-qvihb.ondigitalocean.app/test123/${said}`);
+xhr.open("GET", `https://seal-app-qvihb.ondigitalocean.app/dude123a/${said}`);
 xhr.send();
 xhr.responseType = "json";
 xhr.onload = () => {
@@ -408,16 +408,22 @@ xhr.onload = () => {
     console.log(xhr.response);
   //  console.log(xhr.response.traits.text[0].value);
     var obj = xhr.response;
-		console.log(JSON.stringify(obj.traits));
-        var objlength = JSON.stringify(obj.traits);
-     //   if (obj.filter(company => company.Name === 'Magenic').length ) {
-  //console.log('I contain Magenic');
-//}
+		//console.log(JSON.stringify(obj.traits));
+    //    var objlength = JSON.stringify(obj.traits);
+    //  var obj = JSON.parse(this.responseText);
+console.log(obj);
+console.log(obj.textList);
+//console.log(JSON.stringify(obj.traits));
+var objlength = obj.textList;
+var obj1q = obj.textList;
+    /*    if (obj.filter(company => company.Name === 'Magenic').length ) {
+  console.log('I contain Magenic');
+}*/
         var obj1q = JSON.stringify(xhr.response);
-        if (objlength.length < 3) {
+        if (objlength.length < 1) {
 		var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
 		console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
-        }else { var objecttext = obj.traits.text[0].value};
+        }else { var objecttext = obj.textList};
         const listener = new THREE.AudioListener();
 		camera.add( listener );
 		const sound = new THREE.Audio( listener );
@@ -427,7 +433,7 @@ xhr.onload = () => {
 		sound.setLoop( false );
 		sound.setVolume( 0.5 );
 		sound.play();
-		//const analyser1 = new THREE.AudioAnalyser( sound, 32 );
+		const analyser1 = new THREE.AudioAnalyser( sound, 32 );
 		}); 
   } else {
     console.log(`Error: ${xhr.status}`);
@@ -942,39 +948,43 @@ e.target.responseText
 
 playtrack.onclick = function playtrack1() {
 let image2 = `<img src="/media/d1.jpg" class="rounded-circle user_img_msg">`;
-const image1 = `{% include image2.html %}`;
+const image1 = `<div class="img_cont_msg">
+    <img src="/media/dude3.jpeg" class="rounded-circle user_img_msg">
+            </div>`;
 let xhr = new XMLHttpRequest();
 var userMessage = document.querySelector("#userInput").value;
 let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
 document.querySelector('#body').innerHTML+= userHtml;
-xhr.open(`GET`, `{{ site.apilink1 }}${userMessage}`);
+xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/dude123a/${userMessage}`);
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.send(`messageValue=${userMessage}`);
 xhr.onload = function () {
 var obj = JSON.parse(this.responseText);
-console.log(JSON.stringify(obj.traits));
-var objlength = JSON.stringify(obj.traits);
-var obj1q = JSON.stringify(this.responseText);
+console.log(JSON.stringify(obj));
+console.log(JSON.stringify(obj.textList));
+//console.log(JSON.stringify(obj.traits));
+var objlength = JSON.stringify(obj.textList);
+var obj1q = JSON.stringify(obj.textList);
 if (objlength.length < 3) {
 var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
 console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
-}else { var objecttext = obj.traits.text[0].value};
+}else { var objecttext = obj.textList};
 let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2a+'</div>'+'<div class="msg_cotainer">'+objecttext+'</div>'+'</div>'
 document.querySelector('#body').innerHTML+= botHtml;
 const listener = new THREE.AudioListener();
 camera.add( listener );
 const sound = new THREE.Audio( listener );
 const audioLoader = new THREE.AudioLoader();
-audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
+audioLoader.load( `https://orca-app-4xcdq.ondigitalocean.app/?text=${objecttext}`, function( buffer ) {
 sound.setBuffer( buffer );
 sound.setLoop( false );
 sound.setVolume( 0.5 );
 sound.play();
 const analyser1 = new THREE.AudioAnalyser( sound, 32 );
 }); 
-analyser = new THREE.AudioAnalyser( sound, 32 );
-const data5 = analyser.getAverageFrequency();
-console.log( analyser1.data);
+//analyser = new THREE.AudioAnalyser( sound, 32 );
+//const data5 = analyser.getAverageFrequency();
+//console.log( analyser1.data);
 };
 };
 
