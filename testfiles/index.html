@@ -816,7 +816,7 @@ var voice = {
         console.log(said);
         
         const xhr = new XMLHttpRequest();
-xhr.open("GET", `https://seal-app-qvihb.ondigitalocean.app/test123/${said}`);
+xhr.open("GET", `https://seal-app-qvihb.ondigitalocean.app/dude123a/${said}`);
 xhr.send();
 xhr.responseType = "json";
 xhr.onload = () => {
@@ -1563,7 +1563,7 @@ function createDownloadLink(blob) {
       let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+text99.transcript+'</div>'+image1+'</div>';
       document.querySelector('#body').innerHTML+= userHtml;
 	  let xhr = new XMLHttpRequest();
-      xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/test123/${text99.transcript}`);
+      xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/dude123a/${text99.transcript}`);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.send(`messageValue=${text99.transcript}`);
 	  xhr.onload = function () {
@@ -1643,18 +1643,20 @@ let xhr = new XMLHttpRequest();
 var userMessage = document.querySelector("#userInput").value;
 let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+userMessage+'</div>'+image1+'</div>'
 document.querySelector('#body').innerHTML+= userHtml;
-xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/test123/${userMessage}`);
+xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/dude123a/${userMessage}`);
 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhr.send(`messageValue=${userMessage}`);
 xhr.onload = function () {
 var obj = JSON.parse(this.responseText);
-console.log(JSON.stringify(obj.traits));
-var objlength = JSON.stringify(obj.traits);
-var obj1q = JSON.stringify(this.responseText);
+console.log(JSON.stringify(obj));
+console.log(JSON.stringify(obj.textList));
+//console.log(JSON.stringify(obj.traits));
+var objlength = JSON.stringify(obj.textList);
+var obj1q = JSON.stringify(obj.textList);
 if (objlength.length < 3) {
 var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
 console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
-}else { var objecttext = obj.traits.text[0].value};
+}else { var objecttext = obj.textList};
 let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2a+'</div>'+'<div class="msg_cotainer">'+objecttext+'</div>'+'</div>'
 document.querySelector('#body').innerHTML+= botHtml;
 const listener = new THREE.AudioListener();
@@ -1668,9 +1670,9 @@ sound.setVolume( 0.5 );
 sound.play();
 const analyser1 = new THREE.AudioAnalyser( sound, 32 );
 }); 
-analyser = new THREE.AudioAnalyser( sound, 32 );
-const data5 = analyser.getAverageFrequency();
-console.log( analyser1.data);
+//analyser = new THREE.AudioAnalyser( sound, 32 );
+//const data5 = analyser.getAverageFrequency();
+//console.log( analyser1.data);
 };
 };
 
