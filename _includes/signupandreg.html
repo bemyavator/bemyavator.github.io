@@ -92,9 +92,15 @@ window.location.href = '/profile/';
             } if(req.status === 401){
                     let object = JSON.parse(req.responseText)
                     console.log(object);
-                    document.getElementById("messagebox").innerHTML = "Invalid username or password";
+                var sample = document.getElementById("messagebox");
+                sample.innerHTML = "Invalid username or password";
+                sample.style.display = 'block';
+                sample.style.color = 'red';
             }if(req.status === 404){
-                    document.getElementById("messagebox").innerHTML = "Invalid username or password";
+                var sample = document.getElementById("messagebox");
+                sample.innerHTML = "Invalid username or password";
+                sample.style.display = 'block';
+                sample.style.color = 'red';
             }
             }
             var number = {
