@@ -99,7 +99,7 @@ $(document).ready(function() {
 			  //  const userName = document.getElementById('name').value;
         // const url = 'https://jsonplaceholder.typicode.com/posts';
         // Add your code below this line
-        let url = 'https://membershipapi.onrender.com/api/auth/signup'
+        let url = 'https://membershipapi.onrender.com/api/auth/signup';
             let req = new XMLHttpRequest();
 
             console.log(req);
@@ -144,7 +144,7 @@ $(document).ready(function() {
 		  //  const userName = document.getElementById('name').value;
         // const url = 'https://jsonplaceholder.typicode.com/posts';
         // Add your code below this line
-        let url = 'https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signin'
+        let url = 'https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signin';
             let req = new XMLHttpRequest();
 
             console.log(req);
