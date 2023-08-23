@@ -93,6 +93,8 @@ window.location.href = '/profile/';
                     let object = JSON.parse(req.responseText)
                     console.log(object);
                     document.getElementById("messagebox").innerHTML = "Invalid username or password";
+            }if(req.status === 404){
+                    document.getElementById("messagebox").innerHTML = "Invalid username or password";
             }
             }
             var number = {
