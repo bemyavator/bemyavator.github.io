@@ -8,6 +8,34 @@ $(document).ready(function() {
 		$("#register_form").show();
 		$("#login_form").hide();
 	});
+    $('#butonwest1').on('click', function() {
+        var username = $('#username1').val();
+		var email = $('#email1').val();
+		var password = $('#password1').val();
+        if(username!="" && email!="" && password!="" ){
+            // WARNING: For POST requests, body is set to null by browsers.
+var data = JSON.stringify({
+  "username": username,
+  "email": email,
+  "password": password
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signup");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.send(data);
+        }
+		
+                        });
 	$('#butsave').on('click', function() {
 		//$("#butsave").attr("disabled", "disabled");
 		var username = $('#username1').val();
