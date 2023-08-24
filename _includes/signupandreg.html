@@ -9,9 +9,9 @@ $(document).ready(function() {
 		$("#login_form").hide();
 	});
 	$('#butsave').on('click', function() {
-		$("#butsave").attr("disabled", "disabled");
-		var username = $('#username').val();
-		var email = $('#email').val();
+		//$("#butsave").attr("disabled", "disabled");
+		var username = $('#username1').val();
+		var email = $('#email1').val();
 		//var phone = $('#phone').val();
 		//var city = $('#city').val();
 		var password = $('#password').val();
@@ -39,8 +39,8 @@ $(document).ready(function() {
             }
             }
             var number = {
-           email: document.getElementById('email').value,
-           username: document.getElementById('username').value, 
+           email: document.getElementById('email1').value,
+           username: document.getElementById('username1').value, 
            password: document.getElementById('password').value
          }
             let body = JSON.stringify(number);
