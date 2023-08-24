@@ -13,27 +13,67 @@ $(document).ready(function() {
 		var email = $('#email1').val();
 		var password = $('#password1').val();
         if(username!="" && email!="" && password!="" ){
-            // WARNING: For POST requests, body is set to null by browsers.
-var data = JSON.stringify({
-  "username": username,
-  "email": email,
-  "password": password
-});
+			
 
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+		  //  const userName = document.getElementById('name').value;
+        // const url = 'https://jsonplaceholder.typicode.com/posts';
+        // Add your code below this line
+        let url = 'https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signup';
+            let req = new XMLHttpRequest();
 
-xhr.addEventListener("readystatechange", function() {
-  if(this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("POST", "https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signup");
-xhr.setRequestHeader("Content-Type", "application/json");
-
-xhr.send(data);
-        }
+            console.log(req);
+            req.open('POST', url, true);
+            req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            req.onreadystatechange = () =>{
+                if(req.readyState === 4 && req.status === 201){
+                    
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                }
+                if(req.status === 200){
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                    document.getElementById("messagebox").innerHTML = object.message +" Check your email you regististered for verification";
+                     var sample = document.getElementById("messagebox");
+                     sample.style.display = 'block';
+                sample.style.color = 'Green';
+				
+                }if(req.status === 400){
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                var sample = document.getElementById("messagebox");
+                     sample.innerHTML = object.message;
+                sample.style.display = 'block';
+                sample.style.color = 'red';
+            } 
+                if(req.status === 401){
+                    let object = JSON.parse(req.responseText)
+                    console.log(object);
+                var sample = document.getElementById("messagebox");
+                sample.innerHTML = "Invalid username or password";
+                sample.style.display = 'block';
+                sample.style.color = 'red';
+            }if(req.status === 404){
+                var sample = document.getElementById("messagebox");
+                sample.innerHTML = "Invalid username or password";
+                sample.style.display = 'block';
+                sample.style.color = 'red';
+            }
+            }
+            var number = {
+           username: document.getElementById('username1').value,
+           email: document.getElementById('email1').value, 
+           password: document.getElementById('password1').value
+         }
+            let body = JSON.stringify(number);
+            req.send(body);
+            let dude = req.responseText;
+            console.log(dude);
+          //  let jsonResponse = req.response;
+           // document.getElementById("messagebox").innerHTML = dude.responseText;
+        // Add your code above this line
+			
+			}
 		
                         });
 	$('#butsave').on('click', function() {
