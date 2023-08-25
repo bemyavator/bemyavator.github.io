@@ -60,7 +60,7 @@ scene.add( mesh );
 mesh.scale.set(1,1,1);
 const head = mesh.getObjectByName( 'will' );
 var mixer = new THREE.AnimationMixer( head );
-//var gui = new dat.GUI();
+var gui = new dat.GUI();
 const control = {
 OpenMouth: 0,
 Blink: 0,
@@ -71,7 +71,6 @@ LookRight: 0,
 Lookup: 0,
 Lookdown: 0
 };
-/*
 gui.add(control, 'OpenMouth', 0,1).step(0.01).listen().onChange(function(value){
 head.morphTargetInfluences[0] = value;
 });
@@ -96,7 +95,6 @@ head.morphTargetInfluences[6] = value;
 gui.add(control, 'Lookdown', 0,1).step(0.01).listen().onChange(function(value){
 head.morphTargetInfluences[7] = value;
 });
-*/
 startButton.onclick = function StartAnimation() {
 setTimeout(function() {head.morphTargetInfluences[0] = 1;}, 500);
 setTimeout(function() {head.morphTargetInfluences[0] = 0;}, 1000);
@@ -105,7 +103,7 @@ resetButton.onclick = function ResetParameters() {
 head.morphTargetInfluences[1] = 1;
 setTimeout(function(){head.morphTargetInfluences[1] = 0;}, 500);
 }
-//gui.close();
+gui.hide();
 render();
 });
 } );
