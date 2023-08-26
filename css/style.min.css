@@ -146,4 +146,5 @@ header.header .navigation .nav-drawer .menu-wrapper .menu-item2 {
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
 }
