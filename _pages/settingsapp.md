@@ -1,6 +1,6 @@
 ---
 layout: dashboard1
-permalink: /dashboard1/settings-profile.html
+permalink: /dashboard1/settingsapp.html
 title:  "Welcome to Emersa"
 date:   2023-02-19 03:52:04 +0000
 categories: jekyll update
@@ -9,13 +9,13 @@ categories: jekyll update
 <div class="row align-items-center justify-content-between">
 <div class="col-6">
 <div class="page-title-content">
-<h3>Profile</h3>
-<p class="mb-2">Welcome Neftify Settings Profile page</p>
+<h3>Application</h3>
+<p class="mb-2">Welcome Neftify Settings Application page</p>
 </div>
 </div>
 <div class="col-auto">
-<div class="breadcrumbs"><a href="#">Settings </a><span><i
-class="ri-arrow-right-s-line"></i></span><a href="#">Profile</a></div>
+<div class="breadcrumbs"><a href="#">Settings </a><span>
+<i class="ri-arrow-right-s-line"></i></span><a href="#">Application</a></div>
 </div>
 </div>
 </div>
