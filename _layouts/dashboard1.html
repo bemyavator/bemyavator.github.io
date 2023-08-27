@@ -2,19 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Neftify - NFT Marketplace Bootstrap 5 HTML Template</title>
-    <meta name="description"
-        content="Neftify is the complete UX & UI dashboard for NFT. Here included bids, collection, wallet, and all user setting pages including profile, application, activity, payment method, api, sign in & sign up etc.">
-
-
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
-    <link rel="stylesheet" href="/css/styl35.css">
-</head>
+{% include dashheader.html %}
 
 <body class="@@dashboard">
 
@@ -132,55 +120,8 @@
         </div>
     </div>
 </div>
-   <div class="sidebar">
-    <div class="brand-logo"><a class="full-logo" href="/dashboard/index.html"><img src="/media/emersalogosvg3.svg" alt="" style="     height: 30px; "></a></div>
-    <div class="menu">
-        <ul>
-            <li>
-                <a href="/dashboard/index.html">
-                    <span><i class="ri-layout-grid-fill"></i></span>
-                    <span class="nav-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="">
-                <a href="/dashboard/bids.html">
-                    <span><i class="ri-briefcase-line"></i></span>
-                    <span class="nav-text">Bids</span></a>
-            </li>
-            <li class="">
-                <a href="/dashboard/saved.html">
-                    <span><i class="ri-heart-line"></i></span>
-                    <span class="nav-text">Saved</span></a>
-            </li>
-            <!-- <li class="">
-                <a href="/collection.html">
-                    <span><i class="ri-star-line"></i></span>
-                    <span class="nav-text">Collection</span></a>
-            </li> -->
-            <li class="">
-                <a href="/dashboard/wallet.html">
-                    <span><i class="ri-wallet-line"></i></span>
-                    <span class="nav-text">Wallet</span></a>
-            </li>
-            <!-- <li class="">
-                <a href="/dashboard/profile.html">
-                    <span><i class="ri-account-box-line"></i></span>
-                    <span class="nav-text">Profile</span></a>
-            </li> -->
-            <li class="">
-                <a href="/dashboard/settings-profile.html">
-                    <span><i class="ri-settings-3-line"></i></span>
-                    <span class="nav-text">Settings</span></a>
-            </li>
-            <li class=" logout"><a href="/dashboard/signin.html">
-                    <span><i class="ri-logout-circle-line"></i></span>
-                    <span class="nav-text">Signout</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
+  
+{% include sidebar.html %}
     <div class="content-body">
         <div class="container">
             <div class="row">
