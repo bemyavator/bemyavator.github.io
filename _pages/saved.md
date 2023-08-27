@@ -1,7 +1,8 @@
 ---
 layout: dashboard1
 permalink: /dashboard1/saved.html
-title:  "Welcome to Emersa"
+title:  "Saved"
+titlemessage:  "Welcome Neftify Saved page"
 date:   2023-02-19 03:52:04 +0000
 categories: jekyll update
 ---
@@ -9,13 +10,13 @@ categories: jekyll update
 <div class="row align-items-center justify-content-between">
 <div class="col-6">
 <div class="page-title-content">
-<h3>Saved Items</h3>
-<p class="mb-2">Welcome Neftify Saved page</p>
+<h3>{{ page.title }}</h3>
+<p class="mb-2">{{ page.titlemessage }}</p>
 </div>
 </div>
 <div class="col-auto">
 <div class="breadcrumbs"><a href="#">Home </a><span><i
-class="ri-arrow-right-s-line"></i></span><a href="#">Saved</a></div>
+class="ri-arrow-right-s-line"></i></span><a href="#">{{ page.title }}</a></div>
 </div>
 </div>
 </div>
