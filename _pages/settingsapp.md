@@ -9,13 +9,13 @@ categories: jekyll update
 <div class="row align-items-center justify-content-between">
 <div class="col-6">
 <div class="page-title-content">
-<h3>Application</h3>
-<p class="mb-2">Welcome Neftify Settings Application page</p>
+<h3>{{ page.title }}</h3>
+<p class="mb-2">{{ page.titlemessage }}</p>
 </div>
 </div>
 <div class="col-auto">
-<div class="breadcrumbs"><a href="#">Settings </a><span>
-<i class="ri-arrow-right-s-line"></i></span><a href="#">Application</a></div>
+<div class="breadcrumbs"><a href="#">Home </a><span>
+<i class="ri-arrow-right-s-line"></i></span><a href="#">{{ page.title }}</a></div>
 </div>
 </div>
 </div>
