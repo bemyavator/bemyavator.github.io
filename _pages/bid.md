@@ -58,10 +58,7 @@ class="ri-arrow-right-s-line"></i></span><a href="#">{{ page.title }}</a></div>
 </div>
 </div>
 <div class="col-xl-12">
-<div class="card-header px-0">
-<h4 class="card-title">Active Bids </h4><a class="btn btn-primary" href="/create-invoice">Place
-a Bid</a>
-</div>
+{% include cardheader.html %}
 {% include bidtable.html %}
 </div>
 </div>
