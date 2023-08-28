@@ -446,7 +446,7 @@ function createDownloadLink(blob) {
 		audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop( false );
-		sound.setVolume( 0.5 );
+		sound.setVolume( 1 );
 		sound.play();
 		const analyser1 = new THREE.AudioAnalyser( sound, 32 );
 		}); 
@@ -523,7 +523,7 @@ const audioLoader = new THREE.AudioLoader();
 audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
 sound.setBuffer( buffer );
 sound.setLoop( false );
-sound.setVolume( 0.5 );
+sound.setVolume( 1 );
 sound.play();
 const analyser1 = new THREE.AudioAnalyser( sound, 32 );
 }); 

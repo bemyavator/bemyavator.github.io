@@ -217,7 +217,7 @@ audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
     //sound.start(0);
 	sound.setBuffer( buffer );
 	sound.setLoop( false );
-	sound.setVolume( 0.5 );
+	sound.setVolume( 1 );
 	sound.play();
     const analyser1 = new THREE.AudioAnalyser( sound, 32 );
     
