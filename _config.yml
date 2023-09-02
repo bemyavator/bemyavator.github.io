@@ -40,8 +40,8 @@ contractaddress: >-
  0x72FA7f14D5B2aff852b013451Bc823A85ABFC66D
 company: Emersa
 # Build settings
- theme: minima
- plugins:
+theme: minima
+plugins:
   - jekyll-feed
 
 include:
@@ -85,4 +85,3 @@ apilink3: https://sea-turtle-app-w6yax.ondigitalocean.app/read4
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
