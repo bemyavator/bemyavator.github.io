@@ -422,7 +422,7 @@ var obj1q = obj.textList;
         var obj1q = JSON.stringify(xhr.response);
         if (objlength.length < 1) {
 		var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
-		console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
+		console.log(objecttext+'i am 1'); 
         }else { var objecttext = obj.textList};
         const listener = new THREE.AudioListener();
 		camera.add( listener );
@@ -885,7 +885,7 @@ function createDownloadLink(blob) {
 		var obj1q = JSON.stringify(this.responseText);
 		if (objlength.length < 3) {
 		var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
-		console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
+		console.log(objecttext+'i am 2'); 
 		}else { var objecttext = obj.traits.text[0].value};
 		let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2a+'</div>'+'<div class="msg_cotainer">'+objecttext+'</div>'+'</div>'
 		document.querySelector('#body').innerHTML+= botHtml;
@@ -967,7 +967,7 @@ var objlength = JSON.stringify(obj.textList);
 var obj1q = JSON.stringify(obj.textList);
 if (objlength.length < 3) {
 var objecttext = "I'm sorry, but I didn't understand the question. Please try again";
-console.log(objecttext+'dfgdfgdfgdfgdgdgdgdgf'); 
+console.log(objecttext+'i am 3'); 
 }else { var objecttext = obj.textList};
 let botHtml = '<div class="d-flex justify-content-start mb-4">'+'<div class="img_cont_msg">'+image2a+'</div>'+'<div class="msg_cotainer">'+objecttext+'</div>'+'</div>'
 document.querySelector('#body').innerHTML+= botHtml;
