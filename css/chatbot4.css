@@ -15,17 +15,32 @@
     display: none;
    
 }
+.messager1{
+    position: fixed !important;
+bottom: 0px;
+width: 100% !important;
+/*height:40px;*/
+/*background-color:rgb(10, 10, 10);*/
+/*padding: 5px;*/
+z-index: 5000;
+}
 }
 @media(min-width: 800px){
     .messagebody1q{
         display: block;
-        width: 25%;
+        width: 100%;
     }
     .input-group{
-        width: 25%;
+        width: 100%;
     }
     .messager1{
-        width: 25%;
+        position: fixed !important;
+  bottom: 0px;
+  width: 25% !important;
+  /*height:40px;*/
+  /*background-color:rgb(10, 10, 10);*/
+  /*padding: 5px;*/
+  z-index: 5000;
     }
 
 }
