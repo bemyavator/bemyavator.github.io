@@ -6,7 +6,12 @@
     display: none;
 }
 }
+@media(min-width: 800px){
+    .messagebody1q{
+        display: block;
+    }
 
+}
 
 
 #chat1{
