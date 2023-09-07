@@ -19,7 +19,13 @@
 @media(min-width: 800px){
     .messagebody1q{
         display: block;
-        width: 10%;
+        width: 25%;
+    }
+    .input-group{
+        width: 25%;
+    }
+    .messager1{
+        width: 25%;
     }
 
 }
