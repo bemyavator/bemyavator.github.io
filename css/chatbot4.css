@@ -1,3 +1,14 @@
+@media (max-width: 800px)
+{.input-group {
+    display: none !important;
+}
+.messagebody1q{
+    display: none;
+}
+}
+
+
+
 #chat1{
     position: fixed !important;
   /*  right: 50%;*/
@@ -187,6 +198,8 @@
   }
 
   .input-group {
+    align-items: center;
+    justify-content: center;
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -199,6 +212,7 @@
 .input-group-append {
     margin-left: -1px;
 }
+
 
 #userInput{
     border-top-left-radius: 0;
