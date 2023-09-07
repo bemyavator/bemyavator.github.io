@@ -11,6 +11,10 @@
     align-items: stretch;
     width: 100%;
 }
+#playtrack{
+    height: 100px;
+    color: black;
+}
 .messagebody1q{
     display: none;
    
@@ -41,6 +45,11 @@ z-index: 5000;
   /*background-color:rgb(10, 10, 10);*/
   /*padding: 5px;*/
   z-index: 5000;
+    }
+    #playtrack{
+        position: absolute;
+        height: 100px;
+        color: black;
     }
     .msg_card_body {
         overflow-y: auto;
