@@ -143,18 +143,7 @@
 .justify-content-start {
     justify-content: flex-start!important;
     width: 90%;
-}
-.input-group {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    width: 100%;
-}
-#chat3 {
+}#chat3 {
     position: fixed !important;
     right: 0px;
     width: 100%;
