@@ -42,6 +42,11 @@ z-index: 5000;
   /*padding: 5px;*/
   z-index: 5000;
     }
+    .msg_card_body {
+        overflow-y: auto;
+        max-height: 400px;
+        opacity: 40%;
+    }
 
 }
 
@@ -154,10 +159,6 @@ z-index: 5000;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1.25rem;
-}
-.msg_card_body {
-    overflow-y: auto;
-    opacity: 40%;
 }
 .user_img_msg {
     height: 40px;
