@@ -89,6 +89,84 @@ animate();
 
 function init() {
 
+	function LoaderProgress(callback){
+  this.length     = -1;
+  this.complete   = 0;
+  this.domElement = document.createElement('div');
+  this.progress   = document.createElement('div');
+  
+  this.domElement.appendChild(this.progress);
+  this.domElement.className = 'loader-progress-wrapper';
+  this.progress.className   = 'loader-progress-progress';
+  this.progress.style.width = '0%';
+  
+  this.callback = callback || function(){};
+}
+LoaderProgress.prototype.add = function(type, src){
+  var result = this[++this.length] = {
+    loader: new THREE[type + 'Loader'],
+    complete: false,
+    source: src
+  };
+  return result;
+}
+LoaderProgress.prototype.load = function(){
+  this.complete = 0;
+  for(var i = 0; i < this.length; i++){
+    var current = this[i];
+    if(!current.complete){
+      current.loader.load(this[i].source, function(result){
+        current.complete = result;
+        this.complete++;
+        this.update();
+      }.bind(this));
+    }
+  }
+  return this;
+}
+LoaderProgress.prototype.update = function(a){
+  var progress = this.complete / this.length;
+  this.progress.style.width = (progress * 100) + '%';
+  if(progress === 1) this.callback(this);
+  console.log(progress);
+  return progress;
+}
+
+var loader = new LoaderProgress(function(){
+  // Execute code that needfs the loaded elements here
+  alert('All are loaded');
+});
+
+document.body.appendChild(loader.domElement);
+
+function addRandomPlaceHoldItImage(){
+  var r = Math.round(Math.random() * 4000);
+  loader.add('Image', '//picsum.photos/' + r + '/' + r);
+}
+
+for(var i = 0; i < 10; i++)
+  addRandomPlaceHoldItImage();
+
+loader.load();
+
+
+	const manager = new THREE.LoadingManager();
+manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+
+manager.onLoad = function ( ) {
+	console.log( 'Loading complete!');
+};
+
+manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+
+manager.onError = function ( url ) {
+	console.log( 'There was an error loading ' + url );
+};
+
 const container = document.createElement( 'div' );
 document.body.appendChild( container );
 
