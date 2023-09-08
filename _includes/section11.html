@@ -79,6 +79,10 @@
     </section>
     <script>
         var lc = new LogoCrossfader();
+        {% for logo in site.data.logo %}
+            lc.addLogo( {'src': '{{ logo.src }}'} );
+            
+        {% endfor %}
             lc.addLogo(  { 'src' : '/media/partner1.svg' }  );
             lc.addLogo(  { 'src' : '/media/partner2.svg' }  );
             lc.addLogo(  { 'src' : '/media/partner3.svg' }  );
