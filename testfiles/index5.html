@@ -138,7 +138,8 @@
             game.player.object = new THREE.Object3D();
 			game.scene.add(game.player.object);
 			game.player.object.add(object);
-			game.animations.Idle = object.animations[0];
+			game.animations.Idle = object.animations[7];
+            
             
             game.loadNextAnim(loader);
 		} );
@@ -215,7 +216,7 @@
 		
 		if (!blocked){
 			if (this.player.move.forward>0){
-				const speed = (this.player.action=='Running') ? 400 : 150;
+				const speed = (this.player.object.animations[0]) ? 400 : 150;
 				this.player.object.translateZ(dt*speed);
 			}else{
 				this.player.object.translateZ(-dt*30);
@@ -311,7 +312,10 @@
 		turn = -turn;
 		
 		if (forward>0.3){
-			if (this.player.action!='Walking' && this.player.action!='Running') this.action = 'Walking';
+            
+			//if (this.player.object.action!='Walking' && this.player.action!='Running') this.action = 'Walking';
+            this.player.object.children[0].animations[0].play();
+            console.log(this.player.object.children[0]);
 		}else if (forward<-0.3){
 			if (this.player.action!='Walking Backwards') this.action = 'Walking Backwards';
 		}else{
