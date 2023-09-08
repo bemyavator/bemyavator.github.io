@@ -138,7 +138,7 @@
             game.player.object = new THREE.Object3D();
 			game.scene.add(game.player.object);
 			game.player.object.add(object);
-			game.animations.Idle = object.animations[7];
+			game.animations.Idle = object.animations[11];
             
             
             game.loadNextAnim(loader);
@@ -156,7 +156,7 @@
     loadNextAnim(loader){
 		let anim = this.anims.pop();
 		const game = this;
-		loader.load( `${this.assetsPath}${anim}.fbx`, function( object ){
+		loader.load( /*`${this.assetsPath}${anim}.fbx`*/ `/assets/glb/dude45e.fbx`, function( object ){
 			game.animations[anim] = object.animations[0];
 			if (game.anims.length>0){
 				game.loadNextAnim(loader);
@@ -314,7 +314,7 @@
 		if (forward>0.3){
             
 			//if (this.player.object.action!='Walking' && this.player.action!='Running') this.action = 'Walking';
-            this.player.object.children[0].animations[0].play();
+            this.player.object.children[0].animations[11];
             console.log(this.player.object.children[0]);
 		}else if (forward<-0.3){
 			if (this.player.action!='Walking Backwards') this.action = 'Walking Backwards';
