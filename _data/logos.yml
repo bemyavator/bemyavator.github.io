@@ -40,8 +40,8 @@
 - src : /media/t6.png
   name: yahoo finance
 
-- src : /media/t7.png
-  name: oculus
+# - src : /media/t7.png
+#  name: oculus
 
 - src : /media/t8.png
   name: solidity
