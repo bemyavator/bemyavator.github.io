@@ -14,7 +14,7 @@
     </div>-->
     <div class="entries">
         {% assign i = 0 %}
-{% for logo in site.data.logo %}
+{% for logo in site.data.logos %}
 <div class="entry">
     <div class="entry-inner wow fadeInUp" data-wow-delay="{{ i }}s">
     <img class="lazy" data-src="{{ logo.src }}" />
@@ -87,7 +87,7 @@
     </section>
     <script>
         var lc = new LogoCrossfader();
-        {% for logo in site.data.logo %}
+        {% for logo in site.data.logos %}
             lc.addLogo( {'src': '{{ logo.src }}'} );
 
         {% endfor %}
