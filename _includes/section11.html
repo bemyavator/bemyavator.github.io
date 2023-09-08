@@ -13,14 +13,11 @@
     Including 4 of the Fortune 10 and Hundreds of the Global 2000 </div>
     </div>-->
     <div class="entries">
-        {% assign i = 0 %}
-{% for logo in site.data.logos %}
-<div class="entry">
+    {% assign i = 0 %}{% for logo in site.data.logos limit:12 %}<div class="entry">
     <div class="entry-inner wow fadeInUp" data-wow-delay="{{ i }}s">
     <img class="lazy" data-src="{{ logo.src }}" />
     </div>
-    {% assign i = i | plus:0.1 %}
-    {% endfor %}
+    </div>{% assign i = i | plus:0.1 %}{% endfor %}
   <!--  <div class="entry">
     <div class="entry-inner wow fadeInUp" data-wow-delay="0s">
     <img class="lazy" data-src="/media/partner1.svg" />
@@ -87,8 +84,7 @@
     </section>
     <script>
         var lc = new LogoCrossfader();
-        {% for logo in site.data.logos %}
-            lc.addLogo( {'src': '{{ logo.src }}'} );
+        {% for logo in site.data.logos %}lc.addLogo( {'src': '{{ logo.src }}'} );
         {% endfor %}
  /*           lc.addLogo(  { 'src' : '/media/partner1.svg' }  );
             lc.addLogo(  { 'src' : '/media/partner2.svg' }  );
