@@ -564,7 +564,7 @@ var obj1q = obj.textList;
 		camera.add( listener );
 		const sound = new THREE.Audio( listener );
 		const audioLoader = new THREE.AudioLoader();
-		audioLoader.load( `https://orca-app-4xcdq.ondigitalocean.app/?text=${objecttext}`, function( buffer ) {
+		audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop( false );
 		sound.setVolume( 1 );
@@ -1111,7 +1111,7 @@ const listener = new THREE.AudioListener();
 camera.add( listener );
 const sound = new THREE.Audio( listener );
 const audioLoader = new THREE.AudioLoader();
-audioLoader.load( `https://orca-app-4xcdq.ondigitalocean.app/?text=${objecttext}`, function( buffer ) {
+audioLoader.load( `{{ site.apilink2 }}${objecttext}`, function( buffer ) {
 sound.setBuffer( buffer );
 sound.setLoop( false );
 sound.setVolume( 1 );
