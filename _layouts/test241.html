@@ -25,8 +25,21 @@ color: blue;
 .control-inactive button {
 color: #888;
 }
+.loader1{
+	width: 100%;
+	height: 100%;
+	z-index: 20000;
+	color: black;
+	overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+}
+
 </style>
-<div id="container"></div>
+<div id="container">
+	
+</div>
 <div id="info">
 
 {% include header4c.html %}
@@ -34,7 +47,7 @@ color: #888;
 </head>
 
 <body>
-
+<div class="loader1"></div>
 <!-- Import maps polyfill -->
 <!-- Remove this when import maps will be widely supported -->
 <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
@@ -47,6 +60,7 @@ color: #888;
 }
 }
 </script>
+
 
 <script type="module">
 
@@ -87,67 +101,8 @@ let mixer;
 init();
 animate();
 
+
 function init() {
-
-	function LoaderProgress(callback){
-  this.length     = -1;
-  this.complete   = 0;
-  this.domElement = document.createElement('div');
-  this.progress   = document.createElement('div');
-  
-  this.domElement.appendChild(this.progress);
-  this.domElement.className = 'loader-progress-wrapper';
-  this.progress.className   = 'loader-progress-progress';
-  this.progress.style.width = '0%';
-  
-  this.callback = callback || function(){};
-}
-LoaderProgress.prototype.add = function(type, src){
-  var result = this[++this.length] = {
-    loader: new THREE[type + 'Loader'],
-    complete: false,
-    source: src
-  };
-  return result;
-}
-LoaderProgress.prototype.load = function(){
-  this.complete = 0;
-  for(var i = 0; i < this.length; i++){
-    var current = this[i];
-    if(!current.complete){
-      current.loader.load(this[i].source, function(result){
-        current.complete = result;
-        this.complete++;
-        this.update();
-      }.bind(this));
-    }
-  }
-  return this;
-}
-LoaderProgress.prototype.update = function(a){
-  var progress = this.complete / this.length;
-  this.progress.style.width = (progress * 100) + '%';
-  if(progress === 1) this.callback(this);
-  console.log(progress);
-  return progress;
-}
-
-var loader = new LoaderProgress(function(){
-  // Execute code that needfs the loaded elements here
-  alert('All are loaded');
-});
-
-document.body.appendChild(loader.domElement);
-
-function addRandomPlaceHoldItImage(){
-  var r = Math.round(Math.random() * 4000);
-  loader.add('Image', '//picsum.photos/' + r + '/' + r);
-}
-
-for(var i = 0; i < 10; i++)
-  addRandomPlaceHoldItImage();
-
-loader.load();
 
 
 	const manager = new THREE.LoadingManager();
@@ -157,6 +112,8 @@ manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
 manager.onLoad = function ( ) {
 	console.log( 'Loading complete!');
+	const ele = document.getElementById(container);
+	ele.style.display = "block";
 };
 
 manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
@@ -250,7 +207,7 @@ scene.add( grid );
 
 // model
 
-const loader = new FBXLoader();
+const loader = new FBXLoader( manager );
 loader.load( 'assets/glb/dude45d.fbx', function ( object ) {
 
 mixer = new THREE.AnimationMixer( object );
