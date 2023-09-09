@@ -111,14 +111,9 @@ manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
 manager.onLoad = function ( ) {
 	console.log( 'Loading complete!');
-	const myStyles = `
-  display:none;
-`;
-//const element = document.querySelector('.demo');
-
-
-	const ele = document.getElementById(loader1);
-	ele.style.cssText = myStyles;
+	
+document.getElementById('loader1').remove()
+	
 };
 
 manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
