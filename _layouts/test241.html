@@ -35,7 +35,9 @@ color: #888;
   position: fixed;
   top: 0;
 }
-
+#container{
+	display:hidden;
+}
 </style>
 <div id="container">
 	
@@ -112,8 +114,6 @@ manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
 manager.onLoad = function ( ) {
 	console.log( 'Loading complete!');
-	const ele = document.getElementById(container);
-	ele.style.display = "block";
 };
 
 manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
