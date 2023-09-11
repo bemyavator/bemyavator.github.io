@@ -68,6 +68,10 @@ apilink2: https://apps.emersa.io:8081/?text=
 #apilink3: https://pythonstt.onrender.com/read4
 apilink3: https://sea-turtle-app-w6yax.ondigitalocean.app/read4
 
+appstudio: https://apps.emersa.io:8080
+
+
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

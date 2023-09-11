@@ -1349,7 +1349,7 @@ function createDownloadLink(blob) {
 		camera.add( listener );
 		const sound = new THREE.Audio( listener );
 		const audioLoader = new THREE.AudioLoader();
-		audioLoader.load( `68.183.40.206:8081/?text=${objecttext}`, function( buffer ) {
+		audioLoader.load( `https://apps.emersa.io:8081/?text=${objecttext}`, function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop( false );
 		sound.setVolume( 1 );
@@ -1428,7 +1428,7 @@ const listener = new THREE.AudioListener();
 camera.add( listener );
 const sound = new THREE.Audio( listener );
 const audioLoader = new THREE.AudioLoader();
-audioLoader.load( `68.183.40.206:8081/?text=${objecttext}`, function( buffer ) {
+audioLoader.load( `https://apps.emersa.io:8081/?text=${objecttext}`, function( buffer ) {
 sound.setBuffer( buffer );
 sound.setLoop( false );
 sound.setVolume( 1 );
