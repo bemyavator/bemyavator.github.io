@@ -17,8 +17,8 @@ if (Object.keys(params).length > 0) {
 
 
 function trySampleRequest1(){
- // window.location.href("https://orca-app-2-6vedu.ondigitalocean.app/auth/google");
-  window.open("https://orca-app-2-6vedu.ondigitalocean.app/auth/google", "_self");
+ // window.location.href("https://apps.emersa.io:8083/auth/google");
+  window.open("https://apps.emersa.io:8083/auth/google", "_self");
 }
 // If there's an access token, try an API request.
 // Otherwise, start OAuth 2.0 flow.
@@ -144,7 +144,7 @@ $(document).ready(function() {
 		  //  const userName = document.getElementById('name').value;
         // const url = 'https://jsonplaceholder.typicode.com/posts';
         // Add your code below this line
-        let url = 'https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signin';
+        let url = 'https://apps.emersa.io:8083/api/auth/signin';
             let req = new XMLHttpRequest();
 
             console.log(req);

@@ -66,7 +66,7 @@ $(document).ready(function() {
 		var password = $('#password').val();
 		if(name!="" && email!="" && phone!="" && password!="" ){
 			$.ajax({
-				url: "https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signin/",
+				url: "{{ site.apilink4 }}/api/auth/signin/",
 				type: "POST",
 				data: {
 					type: 1,
@@ -104,7 +104,7 @@ $(document).ready(function() {
 			$.ajax({
                 "async": true,
   "crossDomain": true,
-  "url": "https://orca-app-2-6vedu.ondigitalocean.app/api/auth/signin/",
+  "url": "{{ site.apilink4 }}/api/auth/signin/",
   "method": "POST",
   "headers": {
     "content-type": "application/json",
