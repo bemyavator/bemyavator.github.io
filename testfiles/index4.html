@@ -689,7 +689,7 @@ function createDownloadLink(blob) {
       let userHtml = '<div class="d-flex justify-content-end mb-4">'+'<div class="msg_cotainer_send">'+text99.transcript+'</div>'+image1+'</div>';
       document.querySelector('#body').innerHTML+= userHtml;
 	  let xhr = new XMLHttpRequest();
-      xhr.open(`GET`, `https://seal-app-qvihb.ondigitalocean.app/test123/${text99.transcript}`);
+      xhr.open(`GET`, `https://apps.emersa.io:8082/test123/${text99.transcript}`);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.send(`messageValue=${text99.transcript}`);
 	  xhr.onload = function () {
