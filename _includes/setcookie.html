@@ -24,13 +24,13 @@
     }
     
     function checkCookie() {
-      let user = getCookie("accesstoken");
+      let user = getCookie("accessToken");
       if (user != "") {
         alert("Welcome again " + user);
       } else {
          user = prompt("Please enter your name:","");
          if (user != "" && user != null) {
-           setCookie("username", user, 30);
+           setCookie("accessToken", user, 30);
          }
       }
     }
