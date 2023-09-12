@@ -29,3 +29,5 @@ function doSomething() {
        alert("cookie not found")
     }
 }
+
+window.onload = doSomething;
