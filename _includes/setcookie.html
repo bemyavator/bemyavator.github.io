@@ -26,7 +26,19 @@
     function checkCookie() {
       let user = getCookie("accessToken");
       if (user != "") {
-        alert("Welcome again " + user);
+        var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://apps.emersa.io:8083/api/test/user");
+xhr.setRequestHeader("x-access-token", user);
+
+xhr.send();
       } else {
          user = prompt("Please enter your name:","");
          if (user != "" && user != null) {
