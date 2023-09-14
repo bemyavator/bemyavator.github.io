@@ -156,7 +156,7 @@ $(document).ready(function() {
         document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
 }
 setCookie('accessToken', object.accessToken, 30);
-window.location.href = 'https://apps.emersa.io:8083/profile/'; 
+window.location.href = 'https://apps.emersa.io:8083/profile?accesstoken='+object.accessToken; 
             } if(req.status === 401){
                     let object = JSON.parse(req.responseText)
                     console.log(object);
